@@ -1,0 +1,53 @@
+.createProfile {
+   background-color: #f8f9fa !important;
+   padding: 20px 20px 30px 20px!important;
+   .uploadImgSection {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      .uploadedImg {
+         width: 250px;
+         height: auto;
+         border: 1px solid;
+         border-radius: 5px 5px 0px 0px;
+         margin: auto;
+      }
+      .uploadBtn {
+         width: 250px !important;
+         @include btnCommonStyle;
+         margin-top: -5px;
+         border-radius: 0px 0px 5px 5px !important;
+      }
+   }
+   .createProfileForm {
+      h5 {
+         margin-top: 25px
+      }
+      .workAndEducation{
+         margin-bottom: -8px;
+      }
+      label {
+         @include labelCommonStyle;
+      }
+      .socialLinks{
+         display: flex;
+         margin: 10px 0px;
+         .socialIcons{
+            border: 1px solid lightgray;
+            border-radius: 5px 0px 0px 5px;
+            width: 50px;
+            height: 38px;
+            padding: 5px;
+            margin-right: -3px;
+         }
+      }
+      .saveBtnDiv{
+         text-align: center;
+         margin-top: 30px;
+         margin-bottom: 10px;
+         button {
+            @include btnCommonStyle;
+         }
+      }
+   }
+}

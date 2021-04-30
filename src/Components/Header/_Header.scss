@@ -1,0 +1,32 @@
+.navbar {
+   padding: 2px 0px !important;
+   border-bottom: 1px solid gray;
+   a {
+      h3 {
+         font-size: 32px;
+         font-weight: bold;
+      }
+   }
+   .collapse{
+      ul li {
+         margin: 0px 8px;
+         a {
+            font-size: 17px;
+            color: $commonColor !important;
+            font-weight: 500;
+         }
+      }
+      .createAccountBtn {
+         @include btnCommonStyle;
+         margin-left: 20px;
+         a {
+            text-decoration: none;
+            color: white;
+         }
+         a:hover {
+            text-decoration: none;
+            color: white;
+         }
+      }
+   }
+}

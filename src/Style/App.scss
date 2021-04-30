@@ -1,0 +1,33 @@
+#root {
+   background-color: #f0f2f5;
+};
+.Error {
+   color: red;
+}
+// import common style
+@import './mixins';
+@import './variables';
+
+// import profile page style
+@import '../Components/Header/Header';
+
+// import profile page style
+@import '../Components/Profile/Profile.scss';
+
+// import profile page style
+@import '../Components/Home/Home.scss';
+
+// import profile page style
+@import '../Components/SignupAndSignin/CommonStyle';
+
+// import account activation page style
+@import '../Components/ActivateAccount/ActivateAccount.scss';
+
+// import account activation page style
+@import '../Components/CreateProfile/CreateProfile.scss';
+
+// import user profile page style
+@import '../Components/Profile/Profile.scss';
+
+// import create article page style
+@import '../Components/CreateArticle/CreateArticle.scss';

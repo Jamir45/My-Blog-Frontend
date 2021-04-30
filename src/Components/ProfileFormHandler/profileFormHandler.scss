@@ -1,0 +1,33 @@
+.bioForm {
+   h5 {
+      margin-top: 25px
+   }
+   .workAndEducation{
+      margin-bottom: -8px;
+   }
+   label {
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 500;
+   }
+   .socialLinks{
+      display: flex;
+      margin: 10px 0px;
+      .socialIcons{
+         border: 1px solid lightgray;
+         border-radius: 5px 0px 0px 5px;
+         width: 50px;
+         height: 38px;
+         padding: 5px;
+         margin-right: -3px;
+      }
+   }
+   .saveBtnDiv{
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      button {
+         @include btnCommonStyle;
+      }
+   }
+}

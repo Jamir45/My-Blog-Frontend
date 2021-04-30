@@ -1,0 +1,91 @@
+@mixin  workEducation {
+   h5 {
+      margin-top: 30px;
+      font-size: 18px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid lightgray;
+      color: black;
+   }
+   p {
+      margin-bottom: 3px;
+   }
+}
+
+.userProfile {
+   padding: 20px 0px;
+   .profileSection{
+      position: relative;
+      .logOutBtn{
+         // @include btnCommonStyle;
+         font-weight: 600 !important;
+         position: absolute;
+         top: 10px;
+         right: 10px;
+      }
+      .profileImg {
+         text-align: center;
+         .profileBg{
+            background-color: #6c78f1;
+            height: 120px;
+         }
+         .profilePic {
+            width: 40%;
+            height: auto;
+            margin: 20px 0px;
+            margin-top: -95px;
+            margin-bottom: 5px;
+            border: 6px solid white;
+         }
+      }
+      .profileDetails {
+         padding: 0px 20px 20px 20px;
+         .socialLinks{
+            list-style: none;
+            padding-left: 0;
+            a {
+               padding: 0px 5px;
+               transition: all 0.3s;
+               color: black;
+            }
+            a:hover {
+               color: #474fdf;
+               transform: scale(1.1);
+            }
+         }
+         .overview{
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: black;
+         }
+         .joinAndCountry{
+            list-style: none;
+            padding-left: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid lightgray;
+            svg {
+               // color: #474fdf;
+               color: gray;
+               font-size: 22px;
+               margin-top: -5px !important;
+            }
+         }
+         .Objective {
+            span {
+               font-size: 18px;
+               font-weight: 500;
+               color: black;
+            }
+            p {
+               font-size: 14px;
+               text-align: justify;
+            }
+         }
+         .Education{
+            @include workEducation;
+         }
+         .Work {
+            @include workEducation;
+         }
+      }
+   }
+}

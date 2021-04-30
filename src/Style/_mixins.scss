@@ -1,0 +1,11 @@
+@mixin btnCommonStyle {
+   background-color: #3b49df !important;
+   font-weight: 600 !important;
+   color: white !important;
+}
+
+@mixin labelCommonStyle {
+   margin-top: 15px;
+   margin-bottom: 5px;
+   font-weight: 500;
+}
