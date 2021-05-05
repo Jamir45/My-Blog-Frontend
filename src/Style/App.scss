@@ -10,12 +10,15 @@
 
 // import profile page style
 @import '../Components/Header/Header';
+@import '../Components/Header/SidebarMenu/SidebarMenu.scss';
+@import '../Components/Header/HoverMenu/HoverMenu';
 
 // import profile page style
 @import '../Components/Profile/Profile.scss';
 
 // import profile page style
 @import '../Components/Home/Home.scss';
+@import '../Components/Home/Article/Article';
 
 // import profile page style
 @import '../Components/SignupAndSignin/CommonStyle';
@@ -28,6 +31,10 @@
 
 // import user profile page style
 @import '../Components/Profile/Profile.scss';
+@import '../Components/Profile/ProfileContent/ProfileContent';
 
 // import create article page style
 @import '../Components/CreateArticle/CreateArticle.scss';
+
+// import article details page style
+@import '../Components/ArticleDetails/ArticleDetails';

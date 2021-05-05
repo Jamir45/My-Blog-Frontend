@@ -6,9 +6,23 @@ import { getCookie } from '../SignupAndSignin/Signin/SigninHelper';
 import ProfileHandler from '../ContextProvider/Handler/ProfileHandler';
 import { Paper } from '@material-ui/core';
 import ProfileSection from './ProfileSection';
+import ProfileContent from './ProfileContent/ProfileContent';
 
 const Profile = () => {
-   const {toastMessage, user, userData, userProfile} = useContextData()
+   const {
+      user, 
+      userData, 
+      userProfile, 
+      allArticles,
+      toastMessage, 
+      setArticleDetail,
+      setAuthorArticles
+   } = useContextData()
+
+   useEffect(() => {
+      setArticleDetail(false)
+      setAuthorArticles(false)
+   }, [])
 
    // const { register, handleSubmit, watch, errors } = useForm();
    // const onSubmit = async data => {
@@ -26,7 +40,8 @@ const Profile = () => {
       <div className="container">
          {toastMessage()}
          <div className="row userProfile">
-            <div className="col-md-5">
+            <div className="col-md-0 col-lg-1"></div>
+            <div className="col-md-12 col-lg-10">
                {
                   userData && userProfile &&
                   <ProfileSection 
@@ -35,12 +50,24 @@ const Profile = () => {
                      userProfile={userProfile} 
                   />
                }
+               <div className="row profileContent">
+                  {
+                     userData && userProfile && allArticles &&
+                     <ProfileContent 
+                        user={user} 
+                        userData={userData} 
+                        userProfile={userProfile} 
+                        allArticles={allArticles}
+                     />
+                  }
+               </div>
             </div>
-            <div className="col-md-7">
+            <div className="col-md-0 col-lg-1"></div>
+            {/* <div className="col-md-7">
                <Paper elevation={3}>
                   <h1>This is user post section</h1>
                </Paper>
-            </div>
+            </div> */}
          </div>
          {/* <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Upload Multiple Files</h1>

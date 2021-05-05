@@ -1,0 +1,65 @@
+.articleDetails{
+   padding-top: 15px;
+   padding-bottom: 40px;
+   @media only screen and (min-width: 768px) {
+      .articleBox {
+         padding-left: 0px;
+         padding-right: 0px;
+      }
+      .authorBox {
+         position: fixed;
+         width: inherit;
+         max-width: 26.4%;
+      }
+   }
+   .articleAuthor{
+      .headerBg{
+         height: 35px;
+         background-color: #6c78f1;
+      }
+      .profile {
+         padding: 0px 20px;
+         display: flex;
+         margin-top: -25px;
+         .profileImg {
+            width: 48px !important;
+            height: 48px !important;
+            margin-top: -20px;
+            margin-left: -20px;
+         }
+         a {
+            text-decoration: none;
+            color: black;
+            font-size: 21px;
+            margin-top: 20px !important;
+            padding-left: 15px;
+            transition: all 0.3s;
+         }
+         a:hover {
+            color: blue;
+         }
+      }
+      .profileBody{
+         padding: 7px;
+         p:first-child {
+            font-size: 14px;
+            text-align: justify;
+            margin: 5px 0px;
+            color: gray;
+         }
+         button{
+            @include btnCommonStyle;
+            width: 100%;
+            margin: 10px 0px;
+         }
+         label{
+            font-weight: 500;
+            font-size: 14px;
+            color: rgb(92, 92, 92);
+         }
+         p{
+            font-size: 15px;
+         }
+      }
+   }
+}

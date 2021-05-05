@@ -24,7 +24,7 @@ const ProfileSection = (props) => {
    const {position, organization} = work
 
    return (
-      <Paper elevation={3} className='profileSection'>
+      <Paper elevation={1} className='profileSection'>
          <div className="profileImg">
             <div className='profileBg'></div>
             <img className='profilePic rounded-circle' src={profilePic} alt=""/>
@@ -37,36 +37,33 @@ const ProfileSection = (props) => {
                <a href={twitter} target="_blank"> <TwitterIcon/> </a>
                <a href={linkedin} target="_blank"> <LinkedInIcon/> </a>
             </ul>
-            <div className="d-flex justify-content-between overview">
-               <span>0 Article Published</span>
-               <span>0 Followed</span>
-               <span>0 Followers</span>
-            </div>
-            <ul className="d-flex justify-content-around joinAndCountry">
+            <ul className="d-flex justify-content-center joinAndCountry">
                <li> <RoomIcon /> {country} </li>
                <li> <CakeIcon /> Joined at {toDate} </li>
             </ul>
-            <div className="Objective">
-               <span>Career Objective</span><br/>
-               <p>{bio}</p>
+            <div className="d-md-flex justify-content-evenly">
+               <div className="Education"> 
+                  <h5>Education</h5>
+                  <p> {degree} </p>
+                  <p> {institute} </p>
+               </div>
+               <div className="Work"> 
+                  <h5>Work OR Job</h5> 
+                  <p> {position} </p>
+                  <p> {organization} </p>
+               </div>
             </div>
-            <div className="Education"> 
-               <h5>Education</h5>
-               <p> {degree} </p>
-               <p> {institute} </p>
-            </div>
-            <div className="Work"> 
-               <h5>Work OR Job</h5> 
-               <p> {position} </p>
-               <p> {organization} </p>
-            </div>
+            {/* <div className="Objective">
+               <h6>Career Objective</h6>
+               <p>{}</p>
+            </div> */}
+            
          </div>
          <Button
             variant='contained'
             className="logOutBtn"
-            onClick={() => signout(history)}
          >
-            Logout
+            Follow
          </Button>
       </Paper>
    );

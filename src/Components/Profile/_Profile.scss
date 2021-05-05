@@ -1,18 +1,18 @@
 @mixin  workEducation {
+   text-align: center;
    h5 {
-      margin-top: 30px;
-      font-size: 18px;
-      padding-bottom: 5px;
-      border-bottom: 1px solid lightgray;
+      font-size: 15px;
       color: black;
    }
    p {
+      font-size: 15px;
       margin-bottom: 3px;
    }
 }
 
 .userProfile {
-   padding: 20px 0px;
+   padding-top: 15px;
+   padding-bottom: 40px;
    .profileSection{
       position: relative;
       .logOutBtn{
@@ -29,7 +29,7 @@
             height: 120px;
          }
          .profilePic {
-            width: 40%;
+            width: 150px;
             height: auto;
             margin: 20px 0px;
             margin-top: -95px;
@@ -52,32 +52,19 @@
                transform: scale(1.1);
             }
          }
-         .overview{
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: black;
-         }
          .joinAndCountry{
             list-style: none;
             padding-left: 0;
             padding-bottom: 10px;
             border-bottom: 1px solid lightgray;
-            svg {
-               // color: #474fdf;
-               color: gray;
-               font-size: 22px;
-               margin-top: -5px !important;
-            }
-         }
-         .Objective {
-            span {
-               font-size: 18px;
-               font-weight: 500;
-               color: black;
-            }
-            p {
-               font-size: 14px;
-               text-align: justify;
+            li {
+               margin: 0px 20px;
+               svg {
+                  // color: #474fdf;
+                  color: gray;
+                  font-size: 22px;
+                  margin-top: -5px !important;
+               }
             }
          }
          .Education{

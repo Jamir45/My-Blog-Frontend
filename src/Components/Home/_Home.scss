@@ -1,0 +1,57 @@
+.MuiDialog-paperWidthSm {
+   width: 600px !important;
+}
+
+.Home {
+   padding-top: 15px;
+   padding-bottom: 40px !important;
+   .popularArticle {
+      h5 {
+         text-align: center;
+         padding: 10px;
+         padding-bottom: 5px;
+         border-bottom: 1px solid lightgray;
+      }
+   }
+   @media only screen and (min-width: 768px) {
+      .col-md-4.col-lg-4.d-none.d-md-block {
+         padding-left: 4px;
+         .popularArticle{
+            position: fixed;
+            width: inherit;
+            max-width: 27%;
+            height: 590px;
+            overflow: auto;
+         }
+         /* width */
+         ::-webkit-scrollbar {
+            width: 10px;
+         }
+         
+         /* Track */
+         ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px rgb(173, 173, 173); 
+            border-radius: 10px;
+         }
+         
+         /* Handle */
+         ::-webkit-scrollbar-thumb {
+            background: rgb(194, 194, 194); 
+            border-radius: 10px;
+         }
+         
+         /* Handle on hover */
+         ::-webkit-scrollbar-thumb:hover {
+            background: rgb(158, 158, 158); 
+         }
+      }
+   }
+   @media only screen and (max-width: 768px) {
+      .col-md-4.col-lg-4.d-block {
+         padding: 0px;
+      }
+      .col-md-8.col-lg-7 {
+         padding: 0px;
+      }
+   }
+}

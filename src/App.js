@@ -17,10 +17,10 @@ import Signin from './Components/SignupAndSignin/Signin/Signin';
 import ActivateAccount from './Components/ActivateAccount/ActivateAccount';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
 import CreateArticle from './Components/CreateArticle/CreateArticle';
+import ArticleDetails from './Components/ArticleDetails/ArticleDetails';
 
 
 function App() {
-  // const {header} = useContextData()
   const [header, setHeader] = useState(true)
 
   return (
@@ -45,6 +45,9 @@ function App() {
           </Route>
           <Route path="/create/article">
             <CreateArticle />
+          </Route>
+          <Route path="/article/details/:articleId">
+            <ArticleDetails />
           </Route>
           <Route path="/account/activate/:userToken">
             <ActivateAccount setHeader={setHeader} />

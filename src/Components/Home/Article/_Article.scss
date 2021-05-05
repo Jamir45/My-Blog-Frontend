@@ -1,0 +1,91 @@
+@mixin articleControlBtn {
+   text-transform: capitalize;
+   background-color: rgb(226, 226, 226) !important;
+   padding: 5px 5px !important;
+   transition: all 0.3s;
+}
+
+.articleBox {
+   margin-bottom: 20px;
+   .articleDetails{
+      margin: 0px 20px;
+      padding-bottom: 10px;
+      .userProfile{
+         display: flex;
+         padding-top: 0;
+         padding-bottom: 0px;
+         ul {
+            margin-top: -4px;
+            font-size: 17px;
+            padding-left: 10px;
+            list-style: none;
+            font-weight: 500;
+            li:last-child {
+               font-weight: 300;
+               font-size: 14px !important;
+               color: rgb(92, 92, 92);
+            }
+         }
+      }
+      .readTime {
+         span {
+            font-size: 14px;
+         }
+         button {
+            @include articleControlBtn;
+         }
+         button:hover{
+            background-color: lightgray !important;
+         }
+      }
+      hr {
+         margin-top: -10px;
+         margin-bottom: 10px;
+      }
+      h4 {
+         font-size: 22px !important;
+         margin-top: 0px;
+         padding-top: 0px;
+         a{
+            color: black;
+            text-decoration: none;
+            transition: all 0.3s;
+         }
+         a:hover {
+            color: #8a6efd;
+         }
+      }
+      .tags {
+         span {
+            color: gray;
+            padding: 0px 3px;
+            a{
+               text-decoration: none;
+               color: gray;
+               transition: all 0.2s;
+            }
+            a:hover {
+               color: black;
+            }
+         }
+      }
+   }
+   .articleControl {
+      border-top: 1px solid gray;
+      button {
+         @include articleControlBtn;
+         font-size: 16px;
+         width: 100%;
+         border-radius: 0;
+         svg{
+            font-size: 30px;
+            padding-right: 5px;
+            padding-left: 10px;
+            
+         }
+      }
+      button:hover{
+         background-color: lightgray !important;
+      }
+   }
+}

@@ -27,18 +27,25 @@ const Contexts = () => {
    const [user, setUser] = useState(null)
    const [userData, setUserData] = useState(null)
    const [userProfile, setUserProfile] = useState(null)
+   const [allArticles, setAllArticles] = useState(null)
+   const [articleDetail, setArticleDetail] = useState(false)
+   const [authorArticles, setAuthorArticles] = useState(false)
+   const [popularArticle, setPopularArticle] = useState(false)
+   const [allUsers, setAllUsers] = useState(null)
+   const [allUsersProfile, setAllUsersProfile] = useState(null)
    const [message, setMessage] = useState(null)
    setTimeout( () => {
       setMessage(null)
    }, 4000)
+   console.log(allArticles)
 
-   const url = 'http://localhost:3005/user'
+   const url = 'http://localhost:3005'
    const token = getCookie('myBlogToken');
 
    // get user data
    useEffect(() => {
       if (token) {
-         axios.get(url+'/get/data', {
+         axios.get(url+'/user/get/data', {
             headers: {
               authorization: token
             }
@@ -52,7 +59,7 @@ const Contexts = () => {
    // get user profile data
    useEffect(() => {
       if (token) {
-         axios.get(url+'/profile/get', {
+         axios.get(url+'/user/profile/get', {
             headers: {
               authorization: token
             }
@@ -62,6 +69,30 @@ const Contexts = () => {
          })
       }
    }, [user])
+
+   // get all user article data
+   useEffect(() => {
+      axios.get(url+'/get-all/article')
+      .then(result => {
+         setAllArticles(result.data)
+      })
+   }, [])
+
+   // get all user article data
+   useEffect(() => {
+      axios.get(url+'/user/get/all-users')
+      .then(result => {
+         setAllUsers(result.data)
+      })
+   }, [])
+
+   // get all user article data
+   useEffect(() => {
+      axios.get(url+'/user/get/all-users/profile')
+      .then(result => {
+         setAllUsersProfile(result.data)
+      })
+   }, [])
 
 
    // Manage Signed User 
@@ -109,6 +140,15 @@ const Contexts = () => {
       setUserData,
       userProfile, 
       setUserProfile,
+      allArticles, 
+      articleDetail, 
+      setArticleDetail,
+      popularArticle, 
+      setPopularArticle,
+      authorArticles, 
+      setAuthorArticles,
+      allUsers,
+      allUsersProfile,
       signupErrors, 
       setSignupErrors,
       signout

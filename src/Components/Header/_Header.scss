@@ -1,3 +1,6 @@
+.topMenu {
+   margin-bottom: 60px;
+}
 .navbar {
    padding: 2px 0px !important;
    border-bottom: 1px solid gray;
@@ -8,17 +11,32 @@
       }
    }
    .collapse{
-      ul li {
-         margin: 0px 8px;
-         a {
-            font-size: 17px;
-            color: $commonColor !important;
-            font-weight: 500;
+      ul {
+         position: relative;
+         li {
+            margin: 0px;
+            margin-left: 5px;
+            padding: 7px 10px;
+            cursor: pointer;
+            a {
+               font-size: 17px;
+               color: black !important;
+               font-weight: 500;
+            }
+         }
+         li.Profile:hover .profileDashboard {
+            display: block;
+         }
+         .headerBtn:hover {
+            border-radius: 5px;
+            background-color: rgb(235, 235, 235);
          }
       }
       .createAccountBtn {
          @include btnCommonStyle;
          margin-left: 20px;
+         font-size: 16px;
+         text-transform: capitalize;
          a {
             text-decoration: none;
             color: white;
@@ -26,6 +44,12 @@
          a:hover {
             text-decoration: none;
             color: white;
+         }
+      }
+      @media only screen and (max-width: 768px) {
+         .createAccountBtn {
+            margin-left: 5px !important;
+            font-size: 14px;
          }
       }
    }

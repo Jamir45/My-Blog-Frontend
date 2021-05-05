@@ -1,84 +1,83 @@
-import { Button } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from 'react';
+import { Avatar, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import { useContextData } from '../ContextProvider/ContextProvider';
-import { getCookie } from '../SignupAndSignin/Signin/SigninHelper';
+import HoverMenu from './HoverMenu/HoverMenu';
+import SidebarMenu from './SidebarMenu/SidebarMenu';
+
 
 const Header = () => {
-   const history = useHistory()
-   const {user, toastMessage, signout} = useContextData()
-
-   // // Automatically Logout Signed User 
-   // const token = getCookie('myBlogToken');
-   // useEffect(() => {
-   //    if (!token) {
-   //       toast.error('Your Session Is Timeout. Please SignIn Again')
-   //       signout(history)
-   //    }
-   // }, [!token])
+   const {user, toastMessage, signout, userData, setPopularArticle} = useContextData()
    
    // Make Logical Navigation var
    const logicalNav = () => {
       if (user) {
          return [
-            <li className="nav-item active">
-               <Link className="nav-link" to="/">Home</Link>
+            <li onClick={() => setPopularArticle(false)} className="nav-item">
+               <Link className="nav-link headerBtn" to="/">Home</Link>
             </li>,
             <li className="nav-item">
-               <Link className="nav-link"  to="/following-user-article">Followed Articles</Link>
+               <Link className="nav-link headerBtn"  to="/bookmarks">Bookmarks</Link>
             </li>,
-            <li className="nav-item">
-               <Link className="nav-link"  to="/bookmarks">Bookmarks</Link>
+            <li className="nav-item Profile">
+               <Avatar alt="Remy Sharp" src={userData && userData.profilePic} />
+               <HoverMenu signout={signout} user={user} />
             </li>,
-            <li className="nav-item">
-               <Link className="nav-link"  to="/user/profile"> {user.username} </Link>
-            </li>
          ]
       }else{
          return [
             <li className="nav-item">
-               <Link className="nav-link"  to="/login">Log in</Link>
+               <Link className="nav-link headerBtn"  to="/login">Log in</Link>
             </li>
          ]
       }
    }
 
    return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-         {toastMessage()}
-         <div class="container container-fluid">
-            <Link className="navbar-brand" to="/" >
-               <h3>My Blog</h3>
-            </Link>
+      <div className="topMenu">
+         <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
+            {toastMessage()}
+            <div class="container container-fluid">
+               <SidebarMenu signout={signout} user={user}/>
+               <Link onClick={() => setPopularArticle(false)} className="navbar-brand" to="/" >
+                  <h4>My Blog</h4>
+               </Link>
 
-            <button 
-               class="navbar-toggler" 
-               data-bs-toggle="collapse" 
-               data-bs-target="#navbarNavDropdown" 
-               aria-controls="navbarNavDropdown" 
-               aria-expanded="false" 
-               aria-label="Toggle navigation"
-            >
-               <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-               <ul className="navbar-nav ms-auto">
-                  {logicalNav()}
-               </ul>
-               {
-                  !user && 
-                  <Button
-                     variant='contained'
-                     className="createAccountBtn"
-                  >
-                     <Link to="/signup">Create Account</Link>
-                  </Button>
-               }
+               <div class="collapse navbar-collapse">
+                  <ul className="d-none d-md-block d-md-flex navbar-nav ms-auto">
+                     {logicalNav()}
+                  </ul>
+                  <ul className="d-block d-md-none navbar-nav ms-auto">
+                     {
+                        user ? 
+                        <li className="nav-item Profile">
+                           <Avatar src={userData && userData.profilePic} />
+                           <HoverMenu signout={signout} user={user} />
+                        </li> : 
+                        <li className="nav-item">
+                           <Link className="nav-link headerBtn"  to="/login">Log in</Link>
+                        </li>
+                     }
+                  </ul>
+                  {
+                     user ? 
+                     <Button
+                        variant='contained'
+                        className="createAccountBtn d-none d-md-block"
+                     >
+                        <Link to="/create/article">Create Article</Link>
+                     </Button> :
+                     <Button
+                        variant='contained'
+                        className="createAccountBtn"
+                     >
+                        <Link to="/signup">Create Account</Link>
+                     </Button>
+                  }
+               </div>
             </div>
-         </div>
-      </nav>
+         </nav>
+      </div>
    );
 };
 

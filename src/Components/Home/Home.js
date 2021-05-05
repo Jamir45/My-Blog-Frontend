@@ -1,88 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react';
-import axios from "axios"
-import { useForm } from 'react-hook-form';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import ImageCrop from './ImageCrop/ImageCrop';
+import React, { useEffect } from 'react';
+import { Paper } from '@material-ui/core';
+import { useContextData } from '../ContextProvider/ContextProvider';
+import Article from './Article/Article';
+import PopularArticle from './PopularArticle';
 
 const Home = () => {
-   const [open, setOpen] = React.useState(false);
-   const handleClickOpen = () => {
-      setOpen(true);
-   };
-
-   const handleClose = () => {
-      setOpen(false);
-   };
-
-   // const [formData, setFormData] = useState()
-   // console.log(formData)
-
-   const inputRef = useRef()
-   const triggerFileSelect = () => inputRef.current.click()
-   const [image, setImage] = useState(null)
-   const [croppedImg, setCroppedImg] = useState(null)
-
-   const getFile = (e) => {
-      console.log(e)
-      if (e.target.files && e.target.files.length > 0) {
-         const reader = new FileReader()
-         reader.readAsDataURL(e.target.files[0])
-         reader.addEventListener("load", () => {
-            setImage(reader.result)
-         })
-      }
-      if (!open) {
-         e.preventDefault()
-      }
-   }
+   const {allArticles, setArticleDetail, popularArticle, setAuthorArticles} = useContextData()
    useEffect(() => {
-      if (image) {
-         handleClickOpen()
-      }
-   }, [image])
+      setArticleDetail(false)
+      setAuthorArticles(false)
+   }, [])
 
    return (
       <div className='container'>
-         <img src={croppedImg} className='img-fluid' style={{width: '400px'}} alt=""/>
-         <div>
-            <h1>Upload Multiple Files</h1>
-            <input 
-               onChange={getFile} 
-               type="file" 
-               ref={inputRef} 
-               style={{display: 'none'}}
-            />
-            <Button
-               variant='contained'
-               color="primary"
-               onClick={(e) => triggerFileSelect(e)}
-            >
-               Upload
-            </Button>
-         </div>
-
-         <div>
-            <Dialog
-               open={open}
-               onClose={handleClose}
-               aria-labelledby="alert-dialog-title"
-               aria-describedby="alert-dialog-description"
-            >
-               <DialogTitle id="alert-dialog-title" className="text-center px-5">
-                  Please Crop Your Image Before Upload.
-               </DialogTitle>
-               <DialogContent>
-                  <ImageCrop image={image} setCroppedImg={setCroppedImg} />
-               </DialogContent>
-               <DialogActions>
-                  <Button onClick={handleClose} color="primary">
-                     Disagree
-                  </Button>
-                  <Button onClick={handleClose} color="primary" autoFocus>
-                     Agree
-                  </Button>
-               </DialogActions>
-            </Dialog>
+         <div className="row Home">
+            <div className="col-md-0 col-lg-1"></div>
+            <div className="col-md-8 col-lg-7">
+               {
+                  allArticles && !popularArticle && 
+                  allArticles.map( articles => <Article articles={articles} /> )
+               }
+            </div>
+            <div className={popularArticle ? "col-md-4 col-lg-4 d-block" : "col-md-4 col-lg-4 d-none d-md-block"}>
+               <Paper className="popularArticle" elevation={1}>
+                  <h5> Most Popular Articles </h5>
+                  {
+                     allArticles && 
+                     allArticles.map( articles => <PopularArticle articles={articles} /> )
+                  }
+               </Paper>
+            </div>
          </div>
       </div>
    );
