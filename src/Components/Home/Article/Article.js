@@ -1,24 +1,35 @@
-import { Avatar, Button, Paper } from '@material-ui/core';
-import React from 'react';
+import { Avatar, Paper } from '@material-ui/core';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import { useContextData } from '../../ContextProvider/ContextProvider';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComment, faCommentAlt, faThumbsDown, faThumbsUp } from '@fortawesome/free-regular-svg-icons'
-import { Comment } from '@material-ui/icons';
-
+import MoreButton from './ArticleController/MoreButton';
+import { useEffect } from 'react';
+import ArticleComment from './ArticleComment/ArticleComment';
+import ArticleController from './ArticleController/ArticleController';
 
 const Article = ({articles}) => {
    const {_id, author, title, body, articleThumbnail, likes, dislikes, comments, readTime, createdAt, tags} = articles
    const toDate = new Date(createdAt).toDateString().slice(4)
    const firstP = body.split('<p>')[1]
-   const firstPSlice = firstP.slice(0, firstP.length - 5)
-   const {allUsers, articleDetail, authorArticles} = useContextData()
-   console.log(authorArticles)
-   const articleAuthor = allUsers && allUsers.find(user => user._id === author)
-   // const {username, profilePic} = articleAuthor
+   const firstPSlice = firstP && firstP.slice(0, firstP.length - 5)
+
+   const {user, allUsers, allComments, articleDetail, authorArticles} = useContextData()
+   const [articleAuthor, setArticleAuthor] = useState(null)
+   useEffect(() => {
+      if (allUsers) {
+         const data = allUsers.find(user => user._id === author)
+         setArticleAuthor(data)
+      }
+   }, [allUsers])
+
+   const [articleComments, setArticleComments] = useState(null)
+   useEffect(() => {
+      if (allComments) {
+         const comments = allComments.filter(comment => comment.post === _id)
+         setArticleComments(comments)
+      }
+   }, [allComments])
+
 
    return (
       <Paper className="articleBox" elevation={1}>
@@ -36,10 +47,12 @@ const Article = ({articles}) => {
                   </ul>
                </div>
                <div className="readTime">
-                  <span> {readTime} </span>
-                  <Button> 
-                     Save
-                  </Button> 
+                  <MoreButton 
+                     _id={_id} 
+                     user={user} 
+                     author={author} 
+                     readTime={readTime} 
+                  />
                </div>
             </div>
             <hr/>
@@ -54,7 +67,7 @@ const Article = ({articles}) => {
             }
             <div> 
                {
-                  !articleDetail && firstPSlice.length > 200 ? 
+                  !articleDetail && firstPSlice && firstPSlice.length > 200 ? 
                   <p> 
                      {firstPSlice.slice(0, 200)+'....'} 
                      <Link to={`/article/details/${_id}`}>
@@ -72,24 +85,19 @@ const Article = ({articles}) => {
                }
             </div>
          </div>
-         <div className="d-flex justify-content-evenly articleControl">
-            <Button>
-               13
-               <FontAwesomeIcon icon={faThumbsUp} />
-               Like
-            </Button>
-            <Button> 
-               15
-               <FontAwesomeIcon icon={faThumbsDown} />
-               Dislike
-            </Button>
-            <Button> 
-               17
-               {/* <FontAwesomeIcon icon={faCommentAlt} /> */}
-               <FontAwesomeIcon icon={faComment} />
-               Comments
-            </Button>
-         </div>
+         {
+            articleDetail && <ArticleComment articleId={_id} />
+         }
+         {
+            articleComments && user && 
+            <ArticleController 
+               _id={_id}
+               user={user}
+               likes={likes}
+               dislikes={dislikes}
+               articleComments={articleComments} 
+            />
+         }
       </Paper>
    );
 };

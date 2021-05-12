@@ -6,6 +6,7 @@ import { useContextData } from '../../ContextProvider/ContextProvider';
 import CommonForm from '../CommonForm';
 import SigninForm from './SigninForm';
 import UserHandler from '../../ContextProvider/Handler/UserHandler';
+import FormLoading from '../../Loading/FormLoading';
 
 
 
@@ -43,7 +44,7 @@ const Signin = () => {
          <div className='row signUpSingInForm'>
             <div className='col-md-3'></div>
             <div className='col-md-6'>
-               <Paper className='signupPaper mb-5' elevation={3}>
+               <Paper className='signupPaper' elevation={3}>
                   <div className="text-center">
                      <h5 className='Title'>Sign In On Your Account</h5>
                   </div>
@@ -52,8 +53,7 @@ const Signin = () => {
                      setValues={setValues}
                      handleSubmit={handleSubmit}
                      onSubmit={onSubmit}
-                  ></SigninForm>
-
+                  />
                   {/* <div className='row orOptionDiv'>
                      <span className='orOption col-5'></span>
                      <span className='col-2 text-center'>OR</span>
@@ -61,7 +61,11 @@ const Signin = () => {
                   </div>
                   <CommonForm></CommonForm> */}
                </Paper>
+               {
+                  formLoader && <FormLoading />
+               }
             </div>
+            <div className="py-5"></div>
             <div className='col-md-3'></div>
          </div>
       </div>

@@ -1,14 +1,22 @@
 import React from 'react';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar, Badge, Button, IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import HoverMenu from './HoverMenu/HoverMenu';
 import SidebarMenu from './SidebarMenu/SidebarMenu';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
 
 
 const Header = () => {
-   const {user, toastMessage, signout, userData, setPopularArticle} = useContextData()
-   
+   const {
+      user, 
+      toastMessage, 
+      signout, 
+      userData, 
+      setPopularArticle
+   } = useContextData()
+   console.log(userData)
+
    // Make Logical Navigation var
    const logicalNav = () => {
       if (user) {
@@ -17,7 +25,18 @@ const Header = () => {
                <Link className="nav-link headerBtn" to="/">Home</Link>
             </li>,
             <li className="nav-item">
-               <Link className="nav-link headerBtn"  to="/bookmarks">Bookmarks</Link>
+               <Link className="nav-link headerBtn" to="/bookmarks">
+                  Bookmarks
+                  {
+                     userData && 
+                     <Badge 
+                        className='badge' 
+                        badgeContent={userData.bookmarks.length} 
+                        color="secondary"
+                     >
+                     </Badge>
+                  }
+               </Link>
             </li>,
             <li className="nav-item Profile">
                <Avatar alt="Remy Sharp" src={userData && userData.profilePic} />

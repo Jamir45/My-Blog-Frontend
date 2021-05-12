@@ -72,9 +72,6 @@ const SigninForm = (props) => {
                <Link to="/password/reset">Forgot Password.?</Link>
             </span>
          </div>
-         {
-            formLoader && <LinearProgress className='my-3' />  
-         }
          <Button  
             type="submit" 
             variant="contained"

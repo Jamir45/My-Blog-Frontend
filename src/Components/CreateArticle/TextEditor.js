@@ -2,12 +2,13 @@ import { Editor } from '@tinymce/tinymce-react';
 import React from 'react';
 
 const TextEditor = (props) => {
-   const {editorRef, token} = props
+   const {bodyTextEdit, editorRef, token} = props
 
    return (
       <Editor
          apiKey='xvykg1jsmhicv8cl0x99z2mu1xajt5b6eogxfod1j3b8hdot'
          onInit={(evt, editor) => editorRef.current = editor}
+         initialValue={bodyTextEdit && bodyTextEdit}
          init={{
          id: '#editor',
          height: 400,

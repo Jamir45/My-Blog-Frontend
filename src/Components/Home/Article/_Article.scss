@@ -27,17 +27,6 @@
             }
          }
       }
-      .readTime {
-         span {
-            font-size: 14px;
-         }
-         button {
-            @include articleControlBtn;
-         }
-         button:hover{
-            background-color: lightgray !important;
-         }
-      }
       hr {
          margin-top: -10px;
          margin-bottom: 10px;
@@ -70,22 +59,35 @@
          }
       }
    }
-   .articleControl {
-      border-top: 1px solid gray;
-      button {
-         @include articleControlBtn;
-         font-size: 16px;
+}
+
+.MuiPaper-root.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.MuiPaper-elevation24.MuiPaper-rounded {
+   max-width: 350px !important;
+   position: relative;
+   .formLoader{
+      @include formLoaderStyle;
+   }
+   h4 {
+      text-align: center;
+      margin: 15px;
+      margin-top: 24px;
+   }
+   .MuiDialogActions-root {
+      margin: 15px;
+      flex: 0 0 auto;
+      display: flex;
+      padding: 8px;
+      align-items: center;
+      justify-content: space-evenly;
+      button{
          width: 100%;
-         border-radius: 0;
-         svg{
-            font-size: 30px;
-            padding-right: 5px;
-            padding-left: 10px;
-            
-         }
+         color: white;
       }
-      button:hover{
-         background-color: lightgray !important;
+      button:first-child {
+         background-color: rgb(252, 76, 76);
+      }
+      button:last-child {
+         background-color: $commonColor;
       }
    }
 }

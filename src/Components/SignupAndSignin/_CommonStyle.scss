@@ -30,9 +30,15 @@
 .signUpSingInForm{
    padding-top: 15px;
    padding-bottom: 40px;
+   .col-md-6{
+      padding: 0;
+      position: relative;
+      .formLoader{
+         @include formLoaderStyle;
+      }
+   }
    .signupPaper{
-      padding: 40px 50px;
-
+      padding: 30px 40px;
       .Title {
          font-weight: 700;
          font-size: 25px;

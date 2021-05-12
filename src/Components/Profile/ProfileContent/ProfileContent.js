@@ -1,20 +1,16 @@
 import { Paper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import PostAddIcon from '@material-ui/icons/PostAdd';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { useContextData } from '../../ContextProvider/ContextProvider';
 import Article from '../../Home/Article/Article';
 
 const ProfileContent = (props) => {
-   const {setAuthorArticles} = useContextData()
+   const {user, userData, userProfile, allArticles} = props;
+   const {setArticleDetail, setAuthorArticles} = useContextData()
    useEffect(() => {
       setAuthorArticles(true)
    }, [])
-   const {user, userData, userProfile, allArticles} = props;
-   console.log(user)
-   const {country, bio, socialLinks, education, work} = userProfile;
-
 
    const [authorArticle, setAuthorArticle] = useState(null)
    useEffect(() => {
@@ -30,10 +26,10 @@ const ProfileContent = (props) => {
          <div className='col-md-4'>
             <Paper className='objective' elevation={1} >
                <h6>Career Objective</h6>
-               <p>{bio}</p>
+               <p>{userProfile.bio}</p>
             </Paper>
             <Paper className='overview' elevation={1} >
-               <li><AssignmentIcon /> 0 Article Published</li>
+               <li><AssignmentIcon /> {authorArticle && authorArticle.length} Article Published</li>
                <li><ListAltIcon /> 0 Followed</li>
                <li><ListAltIcon /> 0 Followers</li>
             </Paper>

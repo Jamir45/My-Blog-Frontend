@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import jwtDecode from "jwt-decode";
 import axios from "axios"
 import { getCookie, isAuthenticated, removeCookie, removeLocalStorage } from '../SignupAndSignin/Signin/SigninHelper';
-import { useHistory } from 'react-router-dom';
 
 // Create Context
 const DataContext = createContext()
@@ -24,78 +23,20 @@ const Contexts = () => {
    const [formLoader, setFormLoader] = useState(false)
    const [header, setHeader] = useState(false)
    const [signupErrors, setSignupErrors] = useState(null);
-   const [user, setUser] = useState(null)
-   const [userData, setUserData] = useState(null)
-   const [userProfile, setUserProfile] = useState(null)
-   const [allArticles, setAllArticles] = useState(null)
    const [articleDetail, setArticleDetail] = useState(false)
+   const [editArticle, setEditArticle] = useState(false)
    const [authorArticles, setAuthorArticles] = useState(false)
    const [popularArticle, setPopularArticle] = useState(false)
-   const [allUsers, setAllUsers] = useState(null)
-   const [allUsersProfile, setAllUsersProfile] = useState(null)
    const [message, setMessage] = useState(null)
    setTimeout( () => {
       setMessage(null)
    }, 4000)
-   console.log(allArticles)
 
    const url = 'http://localhost:3005'
    const token = getCookie('myBlogToken');
 
-   // get user data
-   useEffect(() => {
-      if (token) {
-         axios.get(url+'/user/get/data', {
-            headers: {
-              authorization: token
-            }
-         })
-         .then(result => {
-            setUserData(result.data)
-         })
-      }
-   }, [token])
-
-   // get user profile data
-   useEffect(() => {
-      if (token) {
-         axios.get(url+'/user/profile/get', {
-            headers: {
-              authorization: token
-            }
-         })
-         .then(result => {
-            setUserProfile(result.data)
-         })
-      }
-   }, [user])
-
-   // get all user article data
-   useEffect(() => {
-      axios.get(url+'/get-all/article')
-      .then(result => {
-         setAllArticles(result.data)
-      })
-   }, [])
-
-   // get all user article data
-   useEffect(() => {
-      axios.get(url+'/user/get/all-users')
-      .then(result => {
-         setAllUsers(result.data)
-      })
-   }, [])
-
-   // get all user article data
-   useEffect(() => {
-      axios.get(url+'/user/get/all-users/profile')
-      .then(result => {
-         setAllUsersProfile(result.data)
-      })
-   }, [])
-
-
    // Manage Signed User 
+   const [user, setUser] = useState(null)
    const loggedInToken = isAuthenticated()
    useEffect(() => {
       const loggedUser = loggedInToken && jwtDecode(loggedInToken)
@@ -110,6 +51,75 @@ const Contexts = () => {
       toast.error('You are logged out.')
       setUser(null)
    };
+
+   // get user data
+   const [userData, setUserData] = useState(null)
+   useEffect(() => {
+      if (token) {
+         axios.get(url+'/user/get/data', {
+            headers: {
+              authorization: token
+            }
+         })
+         .then(result => {
+            setUserData(result.data)
+         })
+      }
+   }, [token])
+
+   // get user profile data
+   const [userProfile, setUserProfile] = useState(null)
+   useEffect(() => {
+      if (token) {
+         axios.get(url+'/user/profile/get', {
+            headers: {
+              authorization: token
+            }
+         })
+         .then(result => {
+            setUserProfile(result.data)
+         })
+      }
+   }, [user])
+
+   // get all user article data
+   const [allArticles, setAllArticles] = useState(null)
+   useEffect(() => {
+      axios.get(url+'/get-all/article')
+      .then(result => {
+         const reversed = result.data.reverse()
+         setAllArticles(reversed)
+      })
+   }, [])
+
+   // get all article comments data
+   const [allComments, setAllComments] = useState(null)
+   useEffect(() => {
+      axios.get(url+'/comment/get-all')
+      .then(result => {
+         const reversed = result.data.reverse()
+         setAllComments(reversed)
+      })
+   }, [])
+
+   // get all users data
+   const [allUsers, setAllUsers] = useState(null)
+   useEffect(() => {
+      axios.get(url+'/user/get/all-users')
+      .then(result => {
+         setAllUsers(result.data)
+      })
+   }, [])
+
+   // get all users profile data
+   const [allUsersProfile, setAllUsersProfile] = useState(null)
+   useEffect(() => {
+      axios.get(url+'/user/get/all-users/profile')
+      .then(result => {
+         setAllUsersProfile(result.data)
+      })
+   }, [])
+
 
 
    // Show Toast Message in Our Component
@@ -141,8 +151,13 @@ const Contexts = () => {
       userProfile, 
       setUserProfile,
       allArticles, 
+      setAllArticles,
+      allComments, 
+      setAllComments,
       articleDetail, 
       setArticleDetail,
+      editArticle, 
+      setEditArticle,
       popularArticle, 
       setPopularArticle,
       authorArticles, 

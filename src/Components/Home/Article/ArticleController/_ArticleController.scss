@@ -1,0 +1,83 @@
+
+.readTime {
+   span {
+      font-size: 14px;
+   }
+   .saveButton {
+      @include articleControlBtn;
+   }
+   .saveButton:hover, .bookmarked:hover {
+      background-color: lightgray !important;
+   }
+   .bookmarked{
+      @include articleControlBtn;
+      padding: 5px 8px !important;
+      color: blue !important;
+   }
+   .iconButton {
+      @include articleControlBtn;
+      margin-left: 5px;
+      width: 40px;
+      height: 40px;
+   }
+   .iconButton:hover{
+      background-color: lightgray !important;
+   }
+   .MuiButton-textPrimary {
+      color: #3f51b5;
+      width: 100%;
+      text-transform: capitalize;
+      // font-size: 20px !important;
+      svg{
+         margin-right: 3px;
+         margin-left: -10px;
+         font-size: 20px;
+      }
+   }
+   .MuiButton-textSecondary {
+      color: #f50057;
+      width: 100%;
+      text-transform: capitalize;
+      svg{
+         font-size: 21px;
+      }
+   }
+}
+
+.articleControl {
+   border-top: 1px solid gray;
+   button {
+      @include articleControlBtn;
+      font-size: 16px;
+      width: 100%;
+      border-radius: 0;
+      svg{
+         font-size: 30px;
+         padding-right: 5px;
+         padding-left: 10px;
+         
+      }
+   }
+   a {
+      width: 100%;
+      text-decoration: none;
+      button {
+         @include articleControlBtn;
+         font-size: 16px;
+         width: 100%;
+         border-radius: 0;
+         svg{
+            font-size: 30px;
+            padding-right: 5px;
+            padding-left: 10px;
+            
+         }
+      }
+   }
+   .clicked{
+      color: blue;
+   }
+   button:hover{
+      background-color: lightgray !important;
+   }
+}

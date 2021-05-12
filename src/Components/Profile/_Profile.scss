@@ -13,6 +13,10 @@
 .userProfile {
    padding-top: 15px;
    padding-bottom: 40px;
+   .pageLoader{
+      @include loaderStyle;
+      height: 350px;
+   }
    .profileSection{
       position: relative;
       .logOutBtn{

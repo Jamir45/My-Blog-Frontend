@@ -15,11 +15,12 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { useContextData } from '../../ContextProvider/ContextProvider';
+import { Badge } from '@material-ui/core';
 
 
 const SidebarMenu = ({signout, user}) => {
    const history = useHistory()
-   const {popularArticle, setPopularArticle} = useContextData()
+   const {popularArticle, userData, setPopularArticle} = useContextData()
 
    // Toggle Navigation Bar on Left
    const [state, setState] = React.useState({left: false});
@@ -71,6 +72,8 @@ const SidebarMenu = ({signout, user}) => {
                   <BookmarkIcon/> 
                   <Link to="/bookmarks" className="ml-3" >
                      Bookmarks
+                     <Badge className='badge' badgeContent={userData && userData.bookmarks.length} color="secondary">
+                     </Badge>
                   </Link> 
                </ListItem>
                <ListItem button>

@@ -16,9 +16,11 @@
 // import profile page style
 @import '../Components/Profile/Profile.scss';
 
-// import profile page style
+// import home and articles page style
 @import '../Components/Home/Home.scss';
 @import '../Components/Home/Article/Article';
+@import '../Components/Home/Article/ArticleComment/ArticleComment';
+@import '../Components/Home/Article/ArticleController/ArticleController';
 
 // import profile page style
 @import '../Components/SignupAndSignin/CommonStyle';
@@ -38,3 +40,6 @@
 
 // import article details page style
 @import '../Components/ArticleDetails/ArticleDetails';
+
+// import bookmark page style
+@import '../Components/Bookmarks/Bookmarks';

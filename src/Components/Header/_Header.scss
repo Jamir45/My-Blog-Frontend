@@ -22,6 +22,9 @@
                font-size: 17px;
                color: black !important;
                font-weight: 500;
+               .badge {
+                  @include badgeStyle;
+               }
             }
          }
          li.Profile:hover .profileDashboard {

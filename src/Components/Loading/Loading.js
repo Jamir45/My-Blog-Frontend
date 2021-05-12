@@ -1,17 +1,15 @@
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { CircularProgress, makeStyles, Paper } from '@material-ui/core';
 import React from 'react';
 
-const Loading = () => {
+const ComponentLoading = () => {
    return (
-      <>
-         <div className="col-md-3"></div>
-         <div className="col-md-6 text-center my-5">
+      <Paper className="pageLoader" elevation={1}>
+         <div className="text-center">
             <CircularProgress color="secondary" /><br/>
             <strong>Loading...</strong>
          </div>
-         <div className="col-md-3"></div>
-      </>
+      </Paper>
    );
 };
 
-export default Loading;
+export default ComponentLoading;

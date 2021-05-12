@@ -9,3 +9,31 @@
    margin-bottom: 5px;
    font-weight: 500;
 }
+
+@mixin loaderStyle {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+@mixin formLoaderStyle {
+   @include loaderStyle;
+   position: absolute;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 3;
+   background-color: rgba(22, 22, 22, 0.479);
+   strong{
+      // color: #f2075b;
+      font-size: 18px;
+      font-weight: 500;
+      color: white;
+   }
+}
+
+@mixin badgeStyle{
+   margin-top: 5px;
+   padding: 0.35em 0.5em !important;
+   margin-right: 10px !important;
+}

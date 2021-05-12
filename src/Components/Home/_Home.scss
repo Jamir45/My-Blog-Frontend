@@ -5,6 +5,10 @@
 .Home {
    padding-top: 15px;
    padding-bottom: 40px !important;
+   .pageLoader{
+      @include loaderStyle;
+      height: 80vh;
+   }
    .popularArticle {
       h5 {
          text-align: center;

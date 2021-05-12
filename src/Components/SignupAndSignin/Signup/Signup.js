@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useContextData } from '../../ContextProvider/ContextProvider';
 import SignupForm from './SignupForm';
 import UserHandler from '../../ContextProvider/Handler/UserHandler';
+import FormLoading from '../../Loading/FormLoading';
 
 const Signup = () => {
    const {toastMessage, formLoader} = useContextData()
@@ -52,6 +53,9 @@ const Signup = () => {
                   </div>
                   <CommonForm></CommonForm> */}
                </Paper>
+               {
+                  formLoader && <FormLoading />
+               }
             </div>
             <div className='col-md-3'></div>
          </div>

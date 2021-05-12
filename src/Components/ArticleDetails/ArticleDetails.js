@@ -23,7 +23,6 @@ const ArticleDetails = () => {
    }, [allArticles])
 
    const [author, setAuthor] = useState(null)
-   console.log(author)
    useEffect(() => {
       if (allUsers && article) {
          const oneUser = allUsers.find(user => user._id === article.author)
@@ -32,7 +31,6 @@ const ArticleDetails = () => {
    }, [article])
 
    const [authorProfile, setAuthorProfile] = useState(null)
-   console.log(authorProfile)
    useEffect(() => {
       if (allUsersProfile && author) {
          const profile = allUsersProfile.find(profile => profile.user === author._id)

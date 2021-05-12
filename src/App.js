@@ -18,6 +18,8 @@ import ActivateAccount from './Components/ActivateAccount/ActivateAccount';
 import CreateProfile from './Components/CreateProfile/CreateProfile';
 import CreateArticle from './Components/CreateArticle/CreateArticle';
 import ArticleDetails from './Components/ArticleDetails/ArticleDetails';
+import EditArticle from './Components/EditArticle/EditArticle';
+import Bookmark from './Components/Bookmarks/Bookmarks';
 
 
 function App() {
@@ -45,6 +47,12 @@ function App() {
           </Route>
           <Route path="/create/article">
             <CreateArticle />
+          </Route>
+          <Route path="/bookmarks">
+            <Bookmark />
+          </Route>
+          <Route path="/article/edit/:editArticleId">
+            <EditArticle />
           </Route>
           <Route path="/article/details/:articleId">
             <ArticleDetails />

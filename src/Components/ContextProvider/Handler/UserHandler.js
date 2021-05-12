@@ -25,6 +25,7 @@ const UserHandler = () => {
       })
       console.log(result)
       if (result.data.success || result.data.error) {
+         setFormLoader(false)
          if (result.data.success) {
             toast.success(result.data.success)
          } else {
