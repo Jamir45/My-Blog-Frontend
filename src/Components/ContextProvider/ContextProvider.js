@@ -25,6 +25,7 @@ const Contexts = () => {
    const [signupErrors, setSignupErrors] = useState(null);
    const [articleDetail, setArticleDetail] = useState(false)
    const [editArticle, setEditArticle] = useState(false)
+   const [imageUploadDialog, setImageUploadDialog] = useState(false)
    const [authorArticles, setAuthorArticles] = useState(false)
    const [popularArticle, setPopularArticle] = useState(false)
    const [message, setMessage] = useState(null)
@@ -54,11 +55,12 @@ const Contexts = () => {
 
    // get user data
    const [userData, setUserData] = useState(null)
+   console.log(userData)
    useEffect(() => {
       if (token) {
          axios.get(url+'/user/get/data', {
             headers: {
-              authorization: token
+               authorization: token
             }
          })
          .then(result => {
@@ -84,6 +86,7 @@ const Contexts = () => {
 
    // get all user article data
    const [allArticles, setAllArticles] = useState(null)
+   console.log(allArticles)
    useEffect(() => {
       axios.get(url+'/get-all/article')
       .then(result => {
@@ -159,6 +162,8 @@ const Contexts = () => {
       editArticle, 
       setEditArticle,
       popularArticle, 
+      imageUploadDialog, 
+      setImageUploadDialog,
       setPopularArticle,
       authorArticles, 
       setAuthorArticles,

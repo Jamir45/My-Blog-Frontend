@@ -10,17 +10,7 @@ import ArticleController from './ArticleController/ArticleController';
 const Article = ({articles}) => {
    const {_id, author, title, body, articleThumbnail, likes, dislikes, comments, readTime, createdAt, tags} = articles
    const toDate = new Date(createdAt).toDateString().slice(4)
-   const firstP = body.split('<p>')[1]
-   const firstPSlice = firstP && firstP.slice(0, firstP.length - 5)
-
-   const {user, allUsers, allComments, articleDetail, authorArticles} = useContextData()
-   const [articleAuthor, setArticleAuthor] = useState(null)
-   useEffect(() => {
-      if (allUsers) {
-         const data = allUsers.find(user => user._id === author)
-         setArticleAuthor(data)
-      }
-   }, [allUsers])
+   const {user, allComments, articleDetail, authorArticles} = useContextData()
 
    const [articleComments, setArticleComments] = useState(null)
    useEffect(() => {
@@ -40,9 +30,9 @@ const Article = ({articles}) => {
          <div className="articleDetails">
             <div className="d-flex justify-content-between">
                <div className="userProfile">
-                  <Avatar src={articleAuthor && articleAuthor.profilePic} />
+                  <Avatar src={author.profilePic} />
                   <ul>
-                     <li> {articleAuthor && articleAuthor.username} </li>
+                     <li> {author.username} </li>
                      <li> Published at {toDate} </li>
                   </ul>
                </div>
@@ -65,18 +55,6 @@ const Article = ({articles}) => {
                articleDetail && 
                <div dangerouslySetInnerHTML={{__html: body}}></div>
             }
-            <div> 
-               {
-                  !articleDetail && firstPSlice && firstPSlice.length > 200 ? 
-                  <p> 
-                     {firstPSlice.slice(0, 200)+'....'} 
-                     <Link to={`/article/details/${_id}`}>
-                        Reade More
-                     </Link> 
-                  </p> : 
-                  <p> {firstPSlice} </p>
-               } 
-            </div>
             <div className="tags">
                {
                   tags.map(tag => {
@@ -89,7 +67,7 @@ const Article = ({articles}) => {
             articleDetail && <ArticleComment articleId={_id} />
          }
          {
-            articleComments && user && 
+            articleComments && 
             <ArticleController 
                _id={_id}
                user={user}

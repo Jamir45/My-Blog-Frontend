@@ -7,12 +7,12 @@ import { useHistory } from "react-router-dom";
 
 const ProfileHandler = () => {
    const history = useHistory()
-   const {user, userProfile, setUserProfile} = useContextData()
+   const {user, setFormLoader, setUserProfile} = useContextData()
    const token = getCookie('myBlogToken')
    const url = 'http://localhost:3005/user/profile'
    
    // Upload User Profile Pic
-   const uploadProfile = async (croppedImage) => {
+   const uploadProfile = async (croppedImage, handleClose) => {
       const convertDataUrl = croppedImage.toDataURL("image/jpeg")
       const convertFileUrl = dataURLtoFile(convertDataUrl, "cropped-image.jpeg")
       const formData = new FormData()
@@ -20,7 +20,14 @@ const ProfileHandler = () => {
       formData.append('userId', user.userId)
       const result = await axios.put(url+'/image/upload', formData, )
       console.log(result)
-      setUserProfile(result.data.updatedUserData)
+      if (result.data.success) {
+         setFormLoader(false)
+         setUserProfile(result.data.updatedUserData)
+         handleClose()
+      } else {
+         setFormLoader(false)
+         toast.error(result.data.error)
+      }
    }
 
    // Post User Profile Data
@@ -43,11 +50,16 @@ const ProfileHandler = () => {
             headers: {authorization: token}
          })
          console.log(result.data)
-         if (result.data.success) {
-            const {savedProfile, success} = result.data
-            setUserProfile(savedProfile)
-            toast.success(success)
-            history.push('/user/profile')
+         if (result.data.success || result.data.error) {
+            if (result.data.success) {
+               const {savedProfile, success} = result.data
+               setFormLoader(false)
+               setUserProfile(savedProfile)
+               toast.success(success)
+               history.push('/user/profile')
+            } else {
+               toast.error(result.data.error)
+            }
          }
       }
    }

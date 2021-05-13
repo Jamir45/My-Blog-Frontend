@@ -21,7 +21,9 @@ const HoverMenu = ({signout, user}) => {
             <li> 
                <Link to='/bookmarks'>
                   <BookmarkIcon/> Bookmarks
-                  <Badge className='badge' badgeContent={userData && userData.bookmarks.length} color="secondary">
+                  <Badge 
+                     className='badge' 
+                     badgeContent={userData && userData.bookmarks ? userData.bookmarks.length : 0} color="secondary">
                   </Badge>
                </Link> 
             </li>

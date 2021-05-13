@@ -34,10 +34,10 @@ const CreateArticleForm = ({article}) => {
          }
       } else {
          console.log('Post Article')
-         // postArticle(data, bodyText)
+         postArticle(data, bodyText)
       }
       if (data && bodyText) {
-         // setFormLoader(true)
+         setFormLoader(true)
       }
       // const postThumbnail = data.thumbnail[0]
       // console.log(postThumbnail)

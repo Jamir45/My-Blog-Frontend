@@ -45,7 +45,7 @@ const UserHandler = () => {
       if (result.data.success || result.data.error) {
          setFormLoader(false)
          if (result.data.success) {
-            const {success, token} = result.data
+            const {correctUser, success, token} = result.data
             toast.success(success)
             authenticate(token, () => {
                const {username} = jwtDecode(token)
@@ -59,9 +59,11 @@ const UserHandler = () => {
                }
             })
             setUserProfile(profile.data.getUser)
-            !profile.data.error && isAuthenticated() ? 
-            history.push('/user/profile') :
-            history.push('/create/profile');
+            if (correctUser.profile) {
+               history.push('/user/profile')
+            } else {
+               history.push('/create/profile')
+            }
          } else {
             toast.error(result.data.error)
          }

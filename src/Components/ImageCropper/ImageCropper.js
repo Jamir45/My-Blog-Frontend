@@ -5,9 +5,11 @@ import getCroppedImg from './cropImage'
 import useStyles from './styles'
 import { getCookie } from '../SignupAndSignin/Signin/SigninHelper'
 import ProfileHandler from '../ContextProvider/Handler/ProfileHandler'
+import { useContextData } from '../ContextProvider/ContextProvider'
 
 
-const ImageCropper = ({image}) => {
+const ImageCropper = ({image, handleClose}) => {
+  const {setFormLoader} = useContextData()
   const classes = useStyles();
   const {uploadProfile} = ProfileHandler()
 
@@ -27,7 +29,7 @@ const ImageCropper = ({image}) => {
         croppedAreaPixels,
         rotation
       )
-      uploadProfile(croppedImage)
+      uploadProfile(croppedImage, handleClose)
     } catch (e) {
       console.error(e)
     }
@@ -86,7 +88,10 @@ const ImageCropper = ({image}) => {
         </div>
         <div className='text-center'>
           <Button
-            onClick={showCroppedImage}
+            onClick={() => {
+              showCroppedImage()
+              setFormLoader(true)
+            }}
             variant="contained"
             color="primary"
             className={classes.cropButton }

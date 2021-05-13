@@ -9,14 +9,6 @@
       @include loaderStyle;
       height: 80vh;
    }
-   .popularArticle {
-      h5 {
-         text-align: center;
-         padding: 10px;
-         padding-bottom: 5px;
-         border-bottom: 1px solid lightgray;
-      }
-   }
    @media only screen and (min-width: 768px) {
       .col-md-4.col-lg-4.d-none.d-md-block {
          padding-left: 4px;
@@ -26,6 +18,47 @@
             max-width: 27%;
             height: 590px;
             overflow: auto;
+            h5 {
+               text-align: center;
+               padding: 10px;
+               padding-bottom: 5px;
+               border-bottom: 1px solid lightgray;
+            }
+            .popularArticleDiv{
+               padding: 0px 15px;
+               border-bottom: 1px solid lightgray;
+               margin-bottom: 20px;
+               a {
+                  text-decoration: none;
+                  color: black;
+                  font-size: 18px;
+                  font-weight: 400;
+                  transition: all 0.2s;
+               }
+               a:hover {
+                  color: blue;
+               }
+               .popularArticleDetails{
+                  padding: 10px 0px;
+                  display: flex;
+                  .popularArticleControl{
+                     width: 100%;
+                     padding-left: 10px;
+                     .nameDiv {
+                        font-size: 15px;
+                        display: flex;
+                        justify-content: space-between !important;
+                        margin-bottom: 3px;
+                        margin-top: -4px;
+                     }
+                     .likeDislike {
+                        font-size: 14px;
+                        display: flex;
+                        justify-content: space-between;
+                     }
+                  }
+               }
+            }
          }
          /* width */
          ::-webkit-scrollbar {
@@ -48,14 +81,6 @@
          ::-webkit-scrollbar-thumb:hover {
             background: rgb(158, 158, 158); 
          }
-      }
-   }
-   @media only screen and (max-width: 768px) {
-      .col-md-4.col-lg-4.d-block {
-         padding: 0px;
-      }
-      .col-md-8.col-lg-7 {
-         padding: 0px;
       }
    }
 }

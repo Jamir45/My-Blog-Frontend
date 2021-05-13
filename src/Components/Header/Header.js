@@ -15,7 +15,6 @@ const Header = () => {
       userData, 
       setPopularArticle
    } = useContextData()
-   console.log(userData)
 
    // Make Logical Navigation var
    const logicalNav = () => {
@@ -27,15 +26,12 @@ const Header = () => {
             <li className="nav-item">
                <Link className="nav-link headerBtn" to="/bookmarks">
                   Bookmarks
-                  {
-                     userData && 
-                     <Badge 
-                        className='badge' 
-                        badgeContent={userData.bookmarks.length} 
-                        color="secondary"
-                     >
-                     </Badge>
-                  }
+                  <Badge 
+                     className='badge' 
+                     badgeContent={userData && userData.bookmarks ? userData.bookmarks.length : 0} 
+                     color="secondary"
+                  >
+                  </Badge>
                </Link>
             </li>,
             <li className="nav-item Profile">

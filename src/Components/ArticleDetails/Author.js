@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom'
 import { Avatar, Button } from '@material-ui/core';
 
 const Author = (props) => {
-   const {author, authorProfile} = props
-   const {createdAt, username, profilePic} = author
+   const {article, authorProfile} = props
+   const {createdAt, username, profilePic} = article.author
    const {country, bio, socialLinks, education, work} = authorProfile;
 
    const toDate = new Date(createdAt).toDateString().slice(4)

@@ -11,7 +11,7 @@ import ProfileHandler from '../ContextProvider/Handler/ProfileHandler';
 import { getCookie } from '../SignupAndSignin/Signin/SigninHelper';
 
 const CreateProfileForm = () => {
-   const {user, setUser, userData, setUserData} = useContextData()
+   const {setFormLoader, userData} = useContextData()
    const {postProfileData} = ProfileHandler()
    // const token = getCookie('myBlogToken')
    // console.log(token)
@@ -22,6 +22,7 @@ const CreateProfileForm = () => {
    const onSubmit = data => { 
       console.log(data)
       postProfileData(data)
+      setFormLoader(true)
    }  
    // const [bioLength, setBioLength] = useState()
    // const [formData, setFormData] = useState()

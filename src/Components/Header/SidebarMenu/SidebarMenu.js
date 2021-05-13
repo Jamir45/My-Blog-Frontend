@@ -20,7 +20,7 @@ import { Badge } from '@material-ui/core';
 
 const SidebarMenu = ({signout, user}) => {
    const history = useHistory()
-   const {popularArticle, userData, setPopularArticle} = useContextData()
+   const {userData} = useContextData()
 
    // Toggle Navigation Bar on Left
    const [state, setState] = React.useState({left: false});
@@ -46,7 +46,7 @@ const SidebarMenu = ({signout, user}) => {
             <List className="sidebarMenu">
                <ListItem button>
                   <HomeIcon/> 
-                  <Link onClick={() => setPopularArticle(true)} to="/" className="ml-3" >
+                  <Link to="/" className="ml-3" >
                      Home
                   </Link> 
                </ListItem>
@@ -62,9 +62,9 @@ const SidebarMenu = ({signout, user}) => {
                      Create Article
                   </Link> 
                </ListItem>
-               <ListItem onClick={() => setPopularArticle(true)} button>
+               <ListItem button>
                   <AssignmentIcon/> 
-                  <Link className="ml-3" >
+                  <Link to="/popular-article" className="ml-3" >
                      Popular Article
                   </Link> 
                </ListItem>
@@ -72,7 +72,13 @@ const SidebarMenu = ({signout, user}) => {
                   <BookmarkIcon/> 
                   <Link to="/bookmarks" className="ml-3" >
                      Bookmarks
-                     <Badge className='badge' badgeContent={userData && userData.bookmarks.length} color="secondary">
+                     <Badge 
+                        className='badge' 
+                        badgeContent={userData && 
+                        userData.bookmarks ? 
+                        userData.bookmarks.length : 0
+                        } 
+                        color="secondary">
                      </Badge>
                   </Link> 
                </ListItem>
@@ -96,11 +102,11 @@ const SidebarMenu = ({signout, user}) => {
             <List className="sidebarMenu">
                <ListItem button>
                   <HomeIcon/> 
-                  <Link onClick={() => setPopularArticle(false)} to="/" className="ml-3" >
+                  <Link to="/" className="ml-3" >
                      Home
                   </Link> 
                </ListItem>
-               <ListItem onClick={() => setPopularArticle(true)} button>
+               <ListItem button>
                   <AssignmentIcon/> 
                   <Link className="ml-3" >
                      Popular Article

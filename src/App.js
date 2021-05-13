@@ -20,6 +20,7 @@ import CreateArticle from './Components/CreateArticle/CreateArticle';
 import ArticleDetails from './Components/ArticleDetails/ArticleDetails';
 import EditArticle from './Components/EditArticle/EditArticle';
 import Bookmark from './Components/Bookmarks/Bookmarks';
+import PopularArticlePage from './Components/Home/PopularArticle/PopularArticlePage';
 
 
 function App() {
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="/bookmarks">
             <Bookmark />
+          </Route>
+          <Route path="/popular-article">
+            <PopularArticlePage />
           </Route>
           <Route path="/article/edit/:editArticleId">
             <EditArticle />

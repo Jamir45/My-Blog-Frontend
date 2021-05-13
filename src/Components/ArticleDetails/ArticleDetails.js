@@ -20,23 +20,25 @@ const ArticleDetails = () => {
          const data = allArticles.find(article => article._id === articleId)
          setArticle(data)
       }
-   }, [allArticles])
+   }, [articleId && allArticles])
 
-   const [author, setAuthor] = useState(null)
-   useEffect(() => {
-      if (allUsers && article) {
-         const oneUser = allUsers.find(user => user._id === article.author)
-         setAuthor(oneUser)
-      }
-   }, [article])
+   // const [author, setAuthor] = useState(null)
+   // console.log(author)
+   // useEffect(() => {
+   //    if (allUsers && article) {
+   //       const oneUser = allUsers.find(user => user._id === article.author)
+   //       setAuthor(oneUser)
+   //    }
+   // }, [article])
 
    const [authorProfile, setAuthorProfile] = useState(null)
+   console.log(authorProfile)
    useEffect(() => {
-      if (allUsersProfile && author) {
-         const profile = allUsersProfile.find(profile => profile.user === author._id)
+      if (allUsersProfile && article) {
+         const profile = allUsersProfile.find(profile => profile.user === article.author._id)
          setAuthorProfile(profile)
       }
-   }, [author])
+   }, [article])
 
    useEffect(() => {
       setArticleDetail(true)
@@ -54,8 +56,8 @@ const ArticleDetails = () => {
             <div className="col-md-4 col-lg-4">
                <Paper className="articleAuthor authorBox" elevation={1}>
                   {
-                     author && authorProfile && 
-                     <Author author={author} authorProfile={authorProfile}/>
+                     authorProfile && 
+                     <Author article={article} authorProfile={authorProfile}/>
                   }
                </Paper>
             </div>
