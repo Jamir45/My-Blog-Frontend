@@ -5,6 +5,8 @@ import { useContextData } from '../ContextProvider/ContextProvider';
 import HoverMenu from './HoverMenu/HoverMenu';
 import SidebarMenu from './SidebarMenu/SidebarMenu';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
+import { useForm } from 'react-hook-form';
+import SearchIcon from '@material-ui/icons/Search';
 
 
 const Header = () => {
@@ -15,6 +17,7 @@ const Header = () => {
       userData, 
       setPopularArticle
    } = useContextData()
+   console.log(userData)
 
    // Make Logical Navigation var
    const logicalNav = () => {
@@ -48,17 +51,39 @@ const Header = () => {
       }
    }
 
+   const { register, handleSubmit, errors, watch } = useForm();
+   const {bio, degree, institute, position, organization} = watch()
+   
+   const onSubmit = data => { 
+      console.log(data)
+   } 
+
    return (
       <div className="topMenu">
-         <nav class="navbar navbar-expand fixed-top navbar-light bg-light">
+         <nav class="navbar navbar-expand fixed-top shadow-sm navbar-light bg-white">
             {toastMessage()}
             <div class="container container-fluid">
                <SidebarMenu signout={signout} user={user}/>
                <Link onClick={() => setPopularArticle(false)} className="navbar-brand" to="/" >
                   <h4>My Blog</h4>
                </Link>
-
+               
                <div class="collapse navbar-collapse">
+                  <form class="searchForm" onSubmit={handleSubmit(onSubmit)}>
+                     <input 
+                        class="form-control" 
+                        type="text" 
+                        name="search"
+                        placeholder="Search" 
+                        ref={register()} 
+                     />
+                     <Button 
+                        className='searchBtn'
+                        type="submit"
+                     >
+                        <SearchIcon /> Search
+                     </Button>
+                  </form>
                   <ul className="d-none d-md-block d-md-flex navbar-nav ms-auto">
                      {logicalNav()}
                   </ul>

@@ -27,17 +27,10 @@
       }
    }
    .authorArticles{
-      padding: 20px;
+      padding: 15px;
       h4:first-child{
          text-align: center;
       }
-      .articleBox {
-         border: 1px solid lightgray;
-         box-shadow: none;
-         .articleDetails{
-            margin: 0px 10px;
-            padding-bottom: 10;
-         }
-      }
+      @include articleBoxCommonStyle;
    }
 }

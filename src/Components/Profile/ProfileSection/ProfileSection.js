@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Button, Paper } from '@material-ui/core';
 import RoomIcon from '@material-ui/icons/Room';
 import CakeIcon from '@material-ui/icons/Cake';
-import { useHistory } from 'react-router-dom';
-import { useContextData } from '../../ContextProvider/ContextProvider';
 import SocialLinks from './SocialLinks';
+import UserHandler from '../../ContextProvider/Handler/UserHandler';
+import { useContextData } from '../../ContextProvider/ContextProvider';
 
 const ProfileSection = (props) => {
-   const {user, userData, userProfile} = props;
+   const {userData, userProfile} = props;
+   const {user} = useContextData()
+   const {followUnFollow} = UserHandler()
 
-   const {profilePic, gender, createdAt} = userData
+   const {_id, profilePic, follower, following, username, gender, createdAt} = userData
+   const followerUser = follower.includes(user.userId)
+
    const toDate = new Date(createdAt).toDateString().slice(4)
-   console.log(toDate)
 
    const {country, bio, socialLinks, education, work} = userProfile;
 
@@ -38,7 +41,7 @@ const ProfileSection = (props) => {
          <div className="profileImg">
             <div className='profileBg'></div>
             <img className='profilePic rounded-circle' src={profilePic} alt=""/>
-            <h4> {user && user.username} </h4>
+            <h4> {username} </h4>
          </div>
          <div className='profileDetails'>
             {
@@ -50,19 +53,18 @@ const ProfileSection = (props) => {
             </ul>
             {
                education && work && workAndEducation(education, work)
-            }
-            {/* <div className="Objective">
-               <h6>Career Objective</h6>
-               <p>{}</p>
-            </div> */}
-            
+            }            
          </div>
-         <Button
-            variant='contained'
-            className="logOutBtn"
-         >
-            Follow
-         </Button>
+         {
+            user.userId !== _id && 
+            <Button
+               variant='contained'
+               className="logOutBtn"
+               onClick={() => followUnFollow(_id)}
+            >
+               {followerUser ? 'Unfollow' : 'Follow'}
+            </Button>
+         }
       </Paper>
    );
 };

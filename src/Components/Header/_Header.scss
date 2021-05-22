@@ -3,7 +3,9 @@
 }
 .navbar {
    padding: 2px 0px !important;
-   border-bottom: 1px solid gray;
+   .shadow-sm {
+      box-shadow: 0 .125rem .25rem rgba(0,0,0,0.375)!important;
+   }
    a {
       h3 {
          font-size: 32px;
@@ -11,6 +13,21 @@
       }
    }
    .collapse{
+      .searchForm{
+         width: 45%;
+         display: flex;
+         justify-content: center;
+         position: relative;
+         input {
+            background: #eef0f1;
+         }
+         .searchBtn{
+            @include btnCommonStyle;
+            position: absolute;
+            top: 1px;
+            right: 0;
+         }
+      }
       ul {
          position: relative;
          li {
@@ -39,14 +56,12 @@
          @include btnCommonStyle;
          margin-left: 20px;
          font-size: 16px;
-         text-transform: capitalize;
-         a {
-            text-decoration: none;
-            color: white;
-         }
-         a:hover {
-            text-decoration: none;
-            color: white;
+      }
+      @media only screen and (max-width: 1200px) {
+         .searchForm{
+            width: 35%;
+            display: flex;
+            justify-content: center;
          }
       }
       @media only screen and (max-width: 768px) {
@@ -54,6 +69,12 @@
             margin-left: 5px !important;
             font-size: 14px;
          }
+         .searchForm{
+            width: 75%;
+            display: flex;
+            justify-content: center;
+         }
       }
+      
    }
 }

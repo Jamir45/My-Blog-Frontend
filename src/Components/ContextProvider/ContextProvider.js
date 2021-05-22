@@ -55,7 +55,6 @@ const Contexts = () => {
 
    // get user data
    const [userData, setUserData] = useState(null)
-   console.log(userData)
    useEffect(() => {
       if (token) {
          axios.get(url+'/user/get/data', {
@@ -86,7 +85,6 @@ const Contexts = () => {
 
    // get all user article data
    const [allArticles, setAllArticles] = useState(null)
-   console.log(allArticles)
    useEffect(() => {
       axios.get(url+'/get-all/article')
       .then(result => {
@@ -107,6 +105,7 @@ const Contexts = () => {
 
    // get all users data
    const [allUsers, setAllUsers] = useState(null)
+   console.log(allUsers)
    useEffect(() => {
       axios.get(url+'/user/get/all-users')
       .then(result => {
@@ -168,6 +167,7 @@ const Contexts = () => {
       authorArticles, 
       setAuthorArticles,
       allUsers,
+      setAllUsers,
       allUsersProfile,
       signupErrors, 
       setSignupErrors,

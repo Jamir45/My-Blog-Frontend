@@ -2,8 +2,10 @@ import { Paper } from '@material-ui/core';
 import React from 'react';
 import PopularArticleHome from './PopularArticleHome';
 
-const PopularArticle = ({allArticles}) => {
-   const sortedArticle = allArticles.sort((a, b) => {
+const PopularArticle = ({allUsers, allArticles}) => {
+
+   const newArray = allArticles.slice()
+   const sortedArticle = newArray.sort((a, b) => {
       if (a.likes.length < b.likes.length) return 1
       if (a.likes.length > b.likes.length) return -1
       return 0
@@ -14,7 +16,7 @@ const PopularArticle = ({allArticles}) => {
          <h5> Most Popular Articles </h5>
          {
             sortedArticle && 
-            sortedArticle.map(article => <PopularArticleHome articles={article} />)
+            sortedArticle.map(article => <PopularArticleHome allUsers={allUsers} articles={article} />)
          }
       </Paper>
    );

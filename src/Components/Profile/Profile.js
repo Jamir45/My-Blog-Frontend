@@ -65,7 +65,6 @@ const Profile = () => {
             <h1>Upload Multiple Files</h1>
             <input className='form-control' name="File" type="file" ref={register({required: true,})} multiple />
             {errors.File && <span style={{color:'red'}}>This field is required</span>}
-
             <input type="submit"/>
          </form> */}
       </div>

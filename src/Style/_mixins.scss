@@ -2,6 +2,15 @@
    background-color: #3b49df !important;
    font-weight: 600 !important;
    color: white !important;
+   text-transform: capitalize;
+   a {
+      text-decoration: none;
+      color: white;
+   }
+   a:hover {
+      text-decoration: none;
+      color: white;
+   }
 }
 
 @mixin labelCommonStyle {
@@ -32,8 +41,113 @@
    }
 }
 
+@mixin linkStyle {
+   a {
+      text-decoration: none;
+      color: black;
+      transition: all 0.2s;
+   }
+   a:hover {
+      color: blue;
+   }
+}
+
 @mixin badgeStyle{
    margin-top: 5px;
    padding: 0.35em 0.5em !important;
    margin-right: 10px !important;
+}
+
+// Article Box Common Style
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@mixin articleBoxCommonStyle{
+   .articleBox {
+      border: 1px solid lightgray;
+      box-shadow: none;
+      margin-bottom: 15px;
+      .articleDetails{
+         margin: 0px 15px;
+         padding-bottom: 10;
+      }
+      .userProfile{
+         display: flex;
+         padding-top: 0;
+         padding-bottom: 0px;
+         ul {
+            margin-top: -4px;
+            font-size: 17px;
+            padding-left: 10px;
+            list-style: none;
+            font-weight: 500;
+            li {
+               @include linkStyle;
+            }
+            li:last-child {
+               font-weight: 300;
+               font-size: 14px !important;
+               color: rgb(92, 92, 92);
+            }
+         }
+      }
+      hr {
+         margin-top: -10px;
+         margin-bottom: 10px;
+      }
+      h4 {
+         font-family: 'Source Sans Pro', sans-serif;
+         font-size: 28px !important;
+         margin-top: 0px;
+         padding-top: 0px;
+         @include linkStyle;
+      }
+      .tags {
+         span {
+            color: gray;
+            padding: 0px 3px;
+            a{
+               text-decoration: none;
+               color: gray;
+               transition: all 0.2s;
+            }
+            a:hover {
+               color: black;
+            }
+         }
+      }
+   }
+}
+
+// Home Left and Right Sidebar Common Style
+@mixin sidebarDivAndHeading {
+   position: fixed;
+   padding: 10px;
+   height: 590px;
+   overflow: auto;
+   h5 {
+      text-align: center;
+      padding: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid lightgray;
+   }
+}
+@mixin naveDivAndUsername {
+   font-size: 15px;
+   display: flex;
+   justify-content: space-between !important;
+   margin-bottom: 3px;
+   margin-top: -4px;
+   .userName {
+      a{
+         font-size: 15px !important;
+         font-weight: 600 !important;
+      }
+      @include linkStyle;
+   }
+}
+@mixin likeDislike {
+   .likeDislike {
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+   }
 }

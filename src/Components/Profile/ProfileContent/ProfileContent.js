@@ -6,16 +6,17 @@ import { useContextData } from '../../ContextProvider/ContextProvider';
 import Article from '../../Home/Article/Article';
 
 const ProfileContent = (props) => {
-   const {user, userData, userProfile, allArticles} = props;
+   const {userData, userProfile, allArticles} = props;
    const {setArticleDetail, setAuthorArticles} = useContextData()
+   const {_id, follower, following} = userData
    useEffect(() => {
       setAuthorArticles(true)
    }, [])
 
    const [authorArticle, setAuthorArticle] = useState(null)
    useEffect(() => {
-      if (allArticles && user) {
-         const data = allArticles.filter(article => article.author === user.userId)
+      if (allArticles && userData) {
+         const data = allArticles.filter(article => article.author._id === userData._id)
          setAuthorArticle(data)
       }
    }, [allArticles])
@@ -30,8 +31,8 @@ const ProfileContent = (props) => {
             </Paper>
             <Paper className='overview' elevation={1} >
                <li><AssignmentIcon /> {authorArticle && authorArticle.length} Article Published</li>
-               <li><ListAltIcon /> 0 Followed</li>
-               <li><ListAltIcon /> 0 Followers</li>
+               <li><ListAltIcon /> {follower.length} Followers</li>
+               <li><ListAltIcon /> {following.length} Followings</li>
             </Paper>
          </div>
          <div className='col-md-8'>

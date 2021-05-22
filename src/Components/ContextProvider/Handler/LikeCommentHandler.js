@@ -14,6 +14,17 @@ const LikeCommentHandler = () => {
    const token = getCookie('myBlogToken')
    const url = 'http://localhost:3005'
 
+   const resultUpdater = (oldDataArray, newData) => {
+      const result = oldDataArray.map(data => {
+         if (data._id === newData._id) {
+            return newData
+         } else {
+            return data
+         }
+      })
+      return result
+   }
+
    // Write Comment
    const writeComment = async (comment, articleId) => {
       const {userComment} = comment;
@@ -40,13 +51,7 @@ const LikeCommentHandler = () => {
             headers: {authorization: token}
          })
          if (!result.data.error) {
-            const commentReplay = allComments.map(comment => {
-               if (comment._id === result.data._id) {
-                  return result.data
-               } else {
-                  return comment
-               }
-            })
+            const commentReplay = resultUpdater(allComments, result.data)
             setAllComments(commentReplay)
          } else {
             toast.error(result.data.error)
@@ -60,13 +65,7 @@ const LikeCommentHandler = () => {
          headers: {authorization: token}
       })
       if (!result.data.error) {
-         const likedArticle = allArticles.map(article => {
-            if (result.data._id === article._id) {
-               return result.data
-            } else {
-               return article
-            }
-         })
+         const likedArticle = resultUpdater(allArticles, result.data)
          setAllArticles(likedArticle)
       } else {
          toast.error(result.data.error)
@@ -91,6 +90,7 @@ const LikeCommentHandler = () => {
       replayOnComment,
       likeDislikePost,
       bookmarkPost,
+      resultUpdater
    }
 };
 

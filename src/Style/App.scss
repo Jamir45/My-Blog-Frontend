@@ -1,26 +1,48 @@
 #root {
-   background-color: #f0f2f5;
+   min-height: 91vh;
+   background-color: #eef0f1;
 };
 .Error {
    color: red;
 }
+/* width */
+::-webkit-scrollbar {
+   width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 5px rgb(173, 173, 173); 
+   border-radius: 10px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: rgb(194, 194, 194); 
+   border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: rgb(158, 158, 158); 
+}
+
 // import common style
 @import './mixins';
 @import './variables';
 
-// import profile page style
+// import header page style
 @import '../Components/Header/Header';
 @import '../Components/Header/SidebarMenu/SidebarMenu.scss';
 @import '../Components/Header/HoverMenu/HoverMenu';
 
 // import profile page style
 @import '../Components/Profile/Profile.scss';
+@import '../Components/Profile/ProfileContent/ProfileContent';
 
 // import home and articles page style
 @import '../Components/Home/Home.scss';
 @import '../Components/Home/Article/Article';
 @import '../Components/Home/Article/ArticleComment/ArticleComment';
 @import '../Components/Home/Article/ArticleController/ArticleController';
+@import '../Components/Home/Sidebar/Sidebar';
 
 // import profile page style
 @import '../Components/SignupAndSignin/CommonStyle';

@@ -21,7 +21,7 @@ import ArticleDetails from './Components/ArticleDetails/ArticleDetails';
 import EditArticle from './Components/EditArticle/EditArticle';
 import Bookmark from './Components/Bookmarks/Bookmarks';
 import PopularArticlePage from './Components/Home/PopularArticle/PopularArticlePage';
-
+import ArticleAuthorProfile from './Components/Profile/ArticleAuthorProfile'
 
 function App() {
   const [header, setHeader] = useState(true)
@@ -35,13 +35,16 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Signin />
+            <Signin setHeader={setHeader} />
           </Route>
           <Route path="/signup">
             <Signup />
           </Route>
           <Route path="/user/profile">
             <Profile />
+          </Route>
+          <Route path="/article-author/profile/:authorId">
+            <ArticleAuthorProfile />
           </Route>
           <Route path="/create/profile">
             <CreateProfile />

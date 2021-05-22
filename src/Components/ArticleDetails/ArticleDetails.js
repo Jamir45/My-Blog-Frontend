@@ -8,7 +8,6 @@ import Author from './Author';
 const ArticleDetails = () => {
    const {articleId} = useParams()
    const {
-      allUsers, 
       allUsersProfile, 
       allArticles, 
       setArticleDetail
@@ -21,15 +20,6 @@ const ArticleDetails = () => {
          setArticle(data)
       }
    }, [articleId && allArticles])
-
-   // const [author, setAuthor] = useState(null)
-   // console.log(author)
-   // useEffect(() => {
-   //    if (allUsers && article) {
-   //       const oneUser = allUsers.find(user => user._id === article.author)
-   //       setAuthor(oneUser)
-   //    }
-   // }, [article])
 
    const [authorProfile, setAuthorProfile] = useState(null)
    console.log(authorProfile)

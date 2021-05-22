@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Paper } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -10,8 +10,11 @@ import FormLoading from '../../Loading/FormLoading';
 
 
 
-const Signin = () => {
+const Signin = ({setHeader}) => {
    const { toastMessage, formLoader, setFormLoader} = useContextData()
+   useEffect(() => {
+      setHeader(true)
+   }, [])
 
    const history = useHistory();
    const location = useLocation();
@@ -29,7 +32,6 @@ const Signin = () => {
 
    const { handleSubmit } = useForm();
    const [errors, setErrors] = useState(null)
-   console.log(errors)
 
    const {userSignin} = UserHandler()
    const onSubmit = async () => {

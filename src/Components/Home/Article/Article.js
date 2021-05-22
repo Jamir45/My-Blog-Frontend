@@ -10,7 +10,7 @@ import ArticleController from './ArticleController/ArticleController';
 const Article = ({articles}) => {
    const {_id, author, title, body, articleThumbnail, likes, dislikes, comments, readTime, createdAt, tags} = articles
    const toDate = new Date(createdAt).toDateString().slice(4)
-   const {user, allComments, articleDetail, authorArticles} = useContextData()
+   const {user, userData, allComments, articleDetail, authorArticles} = useContextData()
 
    const [articleComments, setArticleComments] = useState(null)
    useEffect(() => {
@@ -30,9 +30,14 @@ const Article = ({articles}) => {
          <div className="articleDetails">
             <div className="d-flex justify-content-between">
                <div className="userProfile">
+                  {/* <Avatar src={articleAuthor && articleAuthor.profilePic} /> */}
                   <Avatar src={author.profilePic} />
                   <ul>
-                     <li> {author.username} </li>
+                     <li> 
+                        <Link to={`/article-author/profile/${author._id}`} >
+                        {author.username}
+                        </Link>
+                     </li>
                      <li> Published at {toDate} </li>
                   </ul>
                </div>

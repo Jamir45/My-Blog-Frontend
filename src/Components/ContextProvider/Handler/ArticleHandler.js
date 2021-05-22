@@ -1,23 +1,35 @@
 import axios from "axios"
-import { authenticate, getCookie, isAuthenticated } from "../../SignupAndSignin/Signin/SigninHelper";
+import { getCookie } from "../../SignupAndSignin/Signin/SigninHelper";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { useContextData } from "../ContextProvider";
+import LikeCommentHandler from "./LikeCommentHandler";
 
 const ArticleHandler = () => {
-   const {setFormLoader, userData, setUserData, allArticles, setAllArticles} = useContextData()
+   const {
+      allUsers,
+      setAllUsers,
+      setFormLoader, 
+      allArticles, 
+      setAllArticles
+   } = useContextData()
+   const {resultUpdater} = LikeCommentHandler()
    const url = 'http://localhost:3005'
    const token = getCookie('myBlogToken')
    const history = useHistory()
+
 
    const resultHandler = (result) => {
       if (result.data.error || result.data.success) {
          setFormLoader(false)
          if (result.data.success) {
             const {success, createdArticle, updatedUser} = result.data
+            console.log(updatedUser)
             toast.success(success)
             setAllArticles([createdArticle, ...allArticles])
-            setUserData({...userData, updatedUser})
+            const userUpdated = resultUpdater(allUsers, updatedUser)
+            setAllUsers(userUpdated)
+
             history.push('/')
          } else {
             toast.error(result.data.error)
@@ -30,7 +42,6 @@ const ArticleHandler = () => {
 
       if (thumbnail.length > 0) {
          const postThumbnail = thumbnail[0]
-         console.log(postThumbnail)
          const formData = new FormData()
          formData.append('file', postThumbnail)
          const result = await axios.post(url+'/upload/post-thumbnail', formData, {
@@ -46,7 +57,6 @@ const ArticleHandler = () => {
             }, {
                headers: {authorization: token}
             })
-            console.log(result.data)
             resultHandler(result)
          }
       } else {
@@ -63,21 +73,13 @@ const ArticleHandler = () => {
       }
    }
 
-
-
    const editResultHandler = (result) => {
       if (result.data.error || result.data.success) {
          setFormLoader(false)
          if (result.data.success) {
             const {success, updatedArticle} = result.data
             toast.success(success)
-            const articleUpdated = allArticles.map(article => {
-               if (article._id === updatedArticle._id) {
-                  return updatedArticle
-               } else {
-                  return article
-               }
-            })
+            const articleUpdated = resultUpdater(allArticles, updatedArticle)
             setAllArticles(articleUpdated)
             if (updatedArticle) {
                history.push('/article/details/'+updatedArticle._id)
@@ -109,7 +111,6 @@ const ArticleHandler = () => {
             }, {
                headers: {authorization: token}
             })
-            console.log(result.data)
             editResultHandler(result)
          }
       } else {
@@ -121,7 +122,6 @@ const ArticleHandler = () => {
          }, {
             headers: {authorization: token}
          })
-         console.log(result.data)
          editResultHandler(result)
       }
    }
@@ -132,24 +132,26 @@ const ArticleHandler = () => {
          const result = await axios.delete(url+'/delete/article/'+postId, {
             headers: {authorization: token}
          });
-         console.log(result.data)
          if (result.data.error || result.data.success) {
             handleClose()
             setFormLoader(false)
             if (result.data.success) {
-               const {deletedArticle, success} = result.data
+               const {deletedArticle, updatedUser, success} = result.data
                toast.success(success)
                const articleDeleted = allArticles.filter(post => {
                   return post._id !== deletedArticle._id
                })
                setAllArticles(articleDeleted)
+
+               const updatedUserData = resultUpdater(allUsers, updatedUser)
+               setAllUsers(updatedUserData)
+               
             } else {
                toast.error(result.data.error)
             }
          }
       }
    }
-
 
    return {
       postArticle,

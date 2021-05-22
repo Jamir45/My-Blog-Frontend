@@ -1,15 +1,18 @@
 import { useContextData } from "../ContextProvider";
 import axios from "axios"
-import { authenticate, isAuthenticated } from "../../SignupAndSignin/Signin/SigninHelper";
+import { authenticate, getCookie } from "../../SignupAndSignin/Signin/SigninHelper";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import LikeCommentHandler from "./LikeCommentHandler";
 
 
 const UserHandler = () => {
    const history = useHistory()
-   const {setUser, setFormLoader, userProfile, setUserProfile, setSignupErrors} = useContextData()
+   const {setUser, userData, setUserData, allUsers, setAllUsers, setFormLoader, setUserProfile, setSignupErrors} = useContextData()
    const url = 'http://localhost:3005/user'
+   const token = getCookie('myBlogToken')
+   const {resultUpdater} = LikeCommentHandler()
    
    // User Create or Signup
    const userSignup = async (values) => {
@@ -72,10 +75,29 @@ const UserHandler = () => {
       }
    }
 
+   const followUnFollow = async (userId) => {
+      if (token) {
+         console.log('Token is = '+token)
+         const result = await axios.put(url+'/followUnFollow/'+userId, {}, {
+            headers: {authorization: token}
+         })
+         console.log(result.data)
+         if (!result.data.error) {
+            const {followerUser, followingUser} = result.data
+            setUserData(followerUser)
+
+            const updatedUser1 = await resultUpdater(allUsers, followerUser)
+            setAllUsers(updatedUser1)
+            const updatedUser2 = await resultUpdater(allUsers, followingUser)
+            setAllUsers(updatedUser2)
+         }
+      }
+   }
 
    return {
       userSignin,
-      userSignup
+      userSignup,
+      followUnFollow
    }
 };
 

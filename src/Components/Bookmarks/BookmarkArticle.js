@@ -10,18 +10,10 @@ const BookmarkArticle = ({article}) => {
    const {_id, author, title, readTime, createdAt, tags} = article
    const toDate = new Date(createdAt).toDateString().slice(4)
 
-   const [articleAuthor, setArticleAuthor] = useState(null)
-   useEffect(() => {
-      if (allUsers) {
-         const data = allUsers.find(user => user._id === author)
-         setArticleAuthor(data)
-      }
-   }, [allUsers])
-
    return (
       <div className="bookmarkSection">
          <div className="bookmarkContent">
-            <Avatar src={articleAuthor && articleAuthor.profilePic} />
+            <Avatar src={author.profilePic} />
             <div className='content'>
                <h5> 
                   <Link to={`/article/details/${_id}`}>
@@ -30,7 +22,7 @@ const BookmarkArticle = ({article}) => {
                </h5>
                <p>
                   <span>
-                     <b>{articleAuthor && articleAuthor.username}</b>
+                     <b>{author.username}</b>
                   </span>
                   <span>{toDate}</span>
                   <span>{readTime}</span>

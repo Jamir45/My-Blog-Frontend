@@ -1,11 +1,12 @@
 .articleDetails{
    padding-top: 15px;
    padding-bottom: 40px;
+   @include articleBoxCommonStyle;
+   .articleBox {
+      padding: 0px;
+      border: none;
+   }
    @media only screen and (min-width: 768px) {
-      .articleBox {
-         padding-left: 0px;
-         padding-right: 0px;
-      }
       .authorBox {
          position: fixed;
          width: inherit;

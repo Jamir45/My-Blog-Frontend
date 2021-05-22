@@ -48,14 +48,8 @@ const MoreButton = (props) => {
    const handleClose = () => {
       setPopupOpen(false);
    };
-
-   const [bookmarked, setBookmarked] = useState(null)
-   useEffect(() => {
-      if (userData) {
-         const data = userData.bookmarks.find(bookmark => bookmark._id === _id)
-         setBookmarked(data)
-      }
-   }, [userData])
+   
+   const bookmarked = userData && userData.bookmarks.includes(_id)
 
    return (
       <>
@@ -69,7 +63,7 @@ const MoreButton = (props) => {
                {bookmarked ? 'Saved' : 'Save'}
             </Button> 
             {
-               user && user.userId === author &&
+               user && user.userId === author._id &&
                <IconButton type="button" onClick={handleClick} className="iconButton">
                   <MoreHorizIcon />
                </IconButton>

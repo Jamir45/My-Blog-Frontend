@@ -4,10 +4,11 @@ import { dataURLtoFile } from "../../ImageCropper/URLConverter";
 import { getCookie } from "../../SignupAndSignin/Signin/SigninHelper";
 import { toast } from 'react-toastify';
 import { useHistory } from "react-router-dom";
+import LikeCommentHandler from "./LikeCommentHandler";
 
 const ProfileHandler = () => {
    const history = useHistory()
-   const {user, setFormLoader, setUserProfile} = useContextData()
+   const {user, setFormLoader, setUserData, setUserProfile} = useContextData()
    const token = getCookie('myBlogToken')
    const url = 'http://localhost:3005/user/profile'
    
@@ -22,8 +23,9 @@ const ProfileHandler = () => {
       console.log(result)
       if (result.data.success) {
          setFormLoader(false)
-         setUserProfile(result.data.updatedUserData)
+         setUserData(result.data.updatedUserData)
          handleClose()
+         toast.success(result.data.success)
       } else {
          setFormLoader(false)
          toast.error(result.data.error)

@@ -1,0 +1,21 @@
+.HomeSidebar{
+   width: 22%;
+   @include sidebarDivAndHeading;
+   .popularArticleDetails{
+      padding: 15px 0px;
+      display: flex;
+      .popularArticleControl{
+         width: 100%;
+         padding-left: 10px;
+         .nameDiv {
+            @include naveDivAndUsername;
+            button {
+               @include btnCommonStyle;
+               font-size: 14px;
+               padding: 1px 6px;
+            }
+         }
+         @include likeDislike;
+      }
+   }
+}
