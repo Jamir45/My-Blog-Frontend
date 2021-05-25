@@ -22,6 +22,8 @@ import EditArticle from './Components/EditArticle/EditArticle';
 import Bookmark from './Components/Bookmarks/Bookmarks';
 import PopularArticlePage from './Components/Home/PopularArticle/PopularArticlePage';
 import ArticleAuthorProfile from './Components/Profile/ArticleAuthorProfile'
+import EditProfile from './Components/EditProfile/EditProfile';
+import QuiryParams from './Components/QuiryTest/QuiryParams';
 
 function App() {
   const [header, setHeader] = useState(true)
@@ -32,6 +34,9 @@ function App() {
         {header && <Header />}
         <Switch>
           <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/home/:filter/page=:pageNo">
             <Home />
           </Route>
           <Route path="/login">
@@ -48,6 +53,9 @@ function App() {
           </Route>
           <Route path="/create/profile">
             <CreateProfile />
+          </Route>
+          <Route path="/edit/profile">
+            <EditProfile />
           </Route>
           <Route path="/create/article">
             <CreateArticle />

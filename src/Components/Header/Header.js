@@ -38,7 +38,7 @@ const Header = () => {
                </Link>
             </li>,
             <li className="nav-item Profile">
-               <Avatar alt="Remy Sharp" src={userData && userData.profilePic} />
+               <Avatar alt="Remy Sharp" src={user && user.profilePic} />
                <HoverMenu signout={signout} user={user} />
             </li>,
          ]
@@ -91,7 +91,7 @@ const Header = () => {
                      {
                         user ? 
                         <li className="nav-item Profile">
-                           <Avatar src={userData && userData.profilePic} />
+                           <Avatar src={user && user.profilePic} />
                            <HoverMenu signout={signout} user={user} />
                         </li> : 
                         <li className="nav-item">

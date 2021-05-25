@@ -6,9 +6,16 @@ import MoreButton from './ArticleController/MoreButton';
 import { useEffect } from 'react';
 import ArticleComment from './ArticleComment/ArticleComment';
 import ArticleController from './ArticleController/ArticleController';
+import * as cheerio from 'cheerio';
+import moment from 'moment';
+
 
 const Article = ({articles}) => {
-   const {_id, author, title, body, articleThumbnail, likes, dislikes, comments, readTime, createdAt, tags} = articles
+   const {_id, author, title, body, articleThumbnail, likes, dislikes, readTime, createdAt, tags} = articles
+   let node = cheerio.load(body)
+   let bodyText = node.text().replace(/(\r\r|\n|\r)/gm, '')
+   const postedOn = moment(createdAt).fromNow()
+
    const toDate = new Date(createdAt).toDateString().slice(4)
    const {user, userData, allComments, articleDetail, authorArticles} = useContextData()
 
@@ -20,7 +27,6 @@ const Article = ({articles}) => {
       }
    }, [allComments])
 
-
    return (
       <Paper className="articleBox" elevation={1}>
          {
@@ -30,13 +36,13 @@ const Article = ({articles}) => {
          <div className="articleDetails">
             <div className="d-flex justify-content-between">
                <div className="userProfile">
-                  {/* <Avatar src={articleAuthor && articleAuthor.profilePic} /> */}
                   <Avatar src={author.profilePic} />
                   <ul>
                      <li> 
                         <Link to={`/article-author/profile/${author._id}`} >
                         {author.username}
                         </Link>
+                        <span> {postedOn} </span>
                      </li>
                      <li> Published at {toDate} </li>
                   </ul>
@@ -57,8 +63,17 @@ const Article = ({articles}) => {
                </Link> 
             </h4>
             {
-               articleDetail && 
-               <div dangerouslySetInnerHTML={{__html: body}}></div>
+               articleDetail ?
+               <div dangerouslySetInnerHTML={{__html: body}}></div> :
+               <>
+                  {
+                     bodyText.length > 220 ? 
+                     <p> {bodyText.substr(0, 220)+'.....'}
+                        <Link to={`/article/details/${_id}`}>Read More</Link> 
+                     </p> :
+                     <p> {bodyText} </p>
+                  }
+               </>
             }
             <div className="tags">
                {

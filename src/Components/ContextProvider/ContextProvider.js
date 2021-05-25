@@ -1,9 +1,11 @@
+import { getCookie, isAuthenticated, removeCookie, removeLocalStorage } from '../SignupAndSignin/Signin/SigninHelper';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwtDecode from "jwt-decode";
+import moment from 'moment';
 import axios from "axios"
-import { getCookie, isAuthenticated, removeCookie, removeLocalStorage } from '../SignupAndSignin/Signin/SigninHelper';
+import { useParams } from 'react-router-dom';
 
 // Create Context
 const DataContext = createContext()
@@ -28,6 +30,7 @@ const Contexts = () => {
    const [imageUploadDialog, setImageUploadDialog] = useState(false)
    const [authorArticles, setAuthorArticles] = useState(false)
    const [popularArticle, setPopularArticle] = useState(false)
+   const [profileEdit, setProfileEdit] = useState(false)
    const [message, setMessage] = useState(null)
    setTimeout( () => {
       setMessage(null)
@@ -38,6 +41,7 @@ const Contexts = () => {
 
    // Manage Signed User 
    const [user, setUser] = useState(null)
+   console.log(user)
    const loggedInToken = isAuthenticated()
    useEffect(() => {
       const loggedUser = loggedInToken && jwtDecode(loggedInToken)
@@ -83,16 +87,6 @@ const Contexts = () => {
       }
    }, [user])
 
-   // get all user article data
-   const [allArticles, setAllArticles] = useState(null)
-   useEffect(() => {
-      axios.get(url+'/get-all/article')
-      .then(result => {
-         const reversed = result.data.reverse()
-         setAllArticles(reversed)
-      })
-   }, [])
-
    // get all article comments data
    const [allComments, setAllComments] = useState(null)
    useEffect(() => {
@@ -122,7 +116,49 @@ const Contexts = () => {
       })
    }, [])
 
+   // get all user article data
+   const [homeArticles, setHomeArticles] = useState(null)
+   const [totalPage, setTotalPage] = useState(null)
+   const [filterData, setFilterData] = useState(null)
+   const [pageNumber, setPageNumber] = useState(null)
+   useEffect(() => {
+      axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
+         .then(result => {
+            console.log(result.data)
+            setHomeArticles(result.data.homeArticles)
+            setTotalPage(result.data.totalPage)
+         })
+   }, [])
+   useEffect(() => {
+      if (filterData) {
+         axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
+         .then(result => {
+            console.log(result.data)
+            setHomeArticles(result.data.homeArticles)
+            setTotalPage(result.data.totalPage)
+         })
+      }
+   }, [filterData])
+   useEffect(() => {
+      if (pageNumber) {
+         axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
+         .then(result => {
+            console.log(result.data)
+            setHomeArticles(result.data.homeArticles)
+            setTotalPage(result.data.totalPage)
+         })
+      }
+   }, [pageNumber])
 
+
+   // get all user article data
+   const [allArticles, setAllArticles] = useState(null)
+   useEffect(() => {
+      axios.get(`${url}/get-all/article`)
+         .then(result => {
+            setAllArticles(result.data)
+         })
+   }, [])
 
    // Show Toast Message in Our Component
    const toastMessage = () => {
@@ -152,14 +188,21 @@ const Contexts = () => {
       setUserData,
       userProfile, 
       setUserProfile,
+      homeArticles, 
+      setHomeArticles,
       allArticles, 
       setAllArticles,
+      totalPage,
+      setFilterData, 
+      setPageNumber,
       allComments, 
       setAllComments,
       articleDetail, 
       setArticleDetail,
       editArticle, 
       setEditArticle,
+      profileEdit, 
+      setProfileEdit,
       popularArticle, 
       imageUploadDialog, 
       setImageUploadDialog,

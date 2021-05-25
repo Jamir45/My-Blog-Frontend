@@ -8,9 +8,31 @@
    transition: all 0.3s;
 }
 .homeArticle{
-      padding-left: 0px !important;
-      @include articleBoxCommonStyle;
+   .articleFilter{
+      display: flex;
+      justify-content: center;
+      padding: 5px !important;
+      background: white;
+      margin-bottom: 8px;
+      border-radius: 5px;
+      a{
+         text-decoration: none;
+         button{
+            text-transform: capitalize;
+            font-size: 18px;
+            padding: 3px 15px;
+         }
+         button.active{
+            font-size: 18px;
+            padding: 3px 15px;
+            @include btnCommonStyle;
+            font-weight: normal !important;
+         }
+      }
    }
+   padding-left: 0px !important;
+   @include articleBoxCommonStyle;
+}
 @media only screen and (max-width: 768px) {
    .homeArticle{
       padding: 0px !important;

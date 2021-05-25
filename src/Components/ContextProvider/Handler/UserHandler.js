@@ -26,7 +26,6 @@ const UserHandler = () => {
          password,
          confirm_password: confirmPassword,
       })
-      console.log(result)
       if (result.data.success || result.data.error) {
          setFormLoader(false)
          if (result.data.success) {

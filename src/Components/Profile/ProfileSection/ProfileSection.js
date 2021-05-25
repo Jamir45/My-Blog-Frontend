@@ -5,6 +5,7 @@ import CakeIcon from '@material-ui/icons/Cake';
 import SocialLinks from './SocialLinks';
 import UserHandler from '../../ContextProvider/Handler/UserHandler';
 import { useContextData } from '../../ContextProvider/ContextProvider';
+import { Link } from 'react-router-dom';
 
 const ProfileSection = (props) => {
    const {userData, userProfile} = props;
@@ -12,7 +13,7 @@ const ProfileSection = (props) => {
    const {followUnFollow} = UserHandler()
 
    const {_id, profilePic, follower, following, username, gender, createdAt} = userData
-   const followerUser = follower.includes(user.userId)
+   const followerUser = follower.includes(user && user.userId)
 
    const toDate = new Date(createdAt).toDateString().slice(4)
 
@@ -56,7 +57,24 @@ const ProfileSection = (props) => {
             }            
          </div>
          {
-            user.userId !== _id && 
+            user ? <>
+            {
+               user.userId !== _id ? 
+               <Button
+                  variant='contained'
+                  className="logOutBtn"
+                  onClick={() => followUnFollow(_id)}
+               >
+                  {followerUser ? 'Unfollow' : 'Follow'}
+               </Button> : 
+               <Button
+                  variant='contained'
+                  className="logOutBtn"
+               >
+                  <Link to="/edit/profile">Edit Profile</Link>
+               </Button>
+            }
+            </> : 
             <Button
                variant='contained'
                className="logOutBtn"

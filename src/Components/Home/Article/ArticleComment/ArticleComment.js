@@ -1,17 +1,12 @@
-import { Avatar, Button } from '@material-ui/core';
-import React, { useRef, useState } from 'react';
+import { Avatar } from '@material-ui/core';
+import React, { useState } from 'react';
 import { useContextData } from '../../../ContextProvider/ContextProvider';
 import CommentReplay from './CommentReplay/CommentReplay';
 import NestedCommentReplay from './CommentReplay/NestedCommentReplay';
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import moment from 'moment';
 
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 const ArticleComment = ({articleId}) => {
    const {userData, allComments, setAllComments} = useContextData()
@@ -19,7 +14,6 @@ const ArticleComment = ({articleId}) => {
 
    const [showReplay, setShowReplay] = useState(null)
    const [allShowReplay, setAllShowReplay] = useState(null)
-   console.log(allShowReplay)
    const [replayBoxOpen, setReplayBoxOpen] = useState(null)
 
    return (
@@ -33,13 +27,14 @@ const ArticleComment = ({articleId}) => {
          {
             articleComments && articleComments.map(commentData => {
                const {_id, comment, user, replies, createdAt} = commentData;
-               const toTime = new Date(createdAt).toLocaleString()
+               const postedOn = moment(createdAt).fromNow()
+               
                return <div className="showComment">
                   <Avatar src={user && user.profilePic} />
                   <div className="userCommentBox">
                      <div className='titleBar'>
                         <p> {user && user.username} </p>
-                        <p> {toTime} </p>
+                        <p> {postedOn} </p>
                      </div>
                      <p className='commentBody'> 
                         {comment}

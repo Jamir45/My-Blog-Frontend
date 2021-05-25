@@ -10,30 +10,27 @@ import { useContextData } from '../ContextProvider/ContextProvider';
 import ProfileHandler from '../ContextProvider/Handler/ProfileHandler';
 import { getCookie } from '../SignupAndSignin/Signin/SigninHelper';
 
-const CreateProfileForm = () => {
-   const {setFormLoader, userData} = useContextData()
-   const {postProfileData} = ProfileHandler()
-   // const token = getCookie('myBlogToken')
-   // console.log(token)
+const CreateProfileForm = ({userProfile}) => {
+   const {setFormLoader, userData, profileEdit} = useContextData()
+   const {editProfileData, postProfileData} = ProfileHandler()
 
    const { register, handleSubmit, errors, watch } = useForm();
    const {bio, degree, institute, position, organization} = watch()
    
    const onSubmit = data => { 
-      console.log(data)
-      postProfileData(data)
-      setFormLoader(true)
-   }  
-   // const [bioLength, setBioLength] = useState()
-   // const [formData, setFormData] = useState()
-   // const [formData, setFormData] = useState()
-   // const [formData, setFormData] = useState()
-   // const [formData, setFormData] = useState()
+      if (profileEdit) {
+         console.log("Edited Data ", data)
+         editProfileData(data)
+         setFormLoader(true)
+      } else {
+         postProfileData(data)
+         setFormLoader(true)
+      }
+   }
 
    return (
       <div>
          <form className='createProfileForm' onSubmit={handleSubmit(onSubmit)}>
-            
             <div className="form-group">
                <label htmlFor="country">Country Name</label>
                <input 
@@ -42,6 +39,7 @@ const CreateProfileForm = () => {
                   id="country"
                   placeholder="Country Name"
                   name="country"
+                  defaultValue={userProfile && userProfile.country}
                   ref={register({ required: true })}
                />
                <datalist id="browsers">
@@ -84,6 +82,7 @@ const CreateProfileForm = () => {
                   rows="5"
                   className='form-control'
                   ref={register({ required: true })}
+                  defaultValue={userProfile && userProfile.bio}
                   placeholder="Bio Length Will Be Maximum 250 Character." 
                />
                {
@@ -108,6 +107,7 @@ const CreateProfileForm = () => {
                   type="text"
                   name="website"
                   className="form-control" 
+                  defaultValue={userProfile && userProfile.socialLinks.website}
                   placeholder="Website Profile Link (Optional)"
                   ref={register()}
                />
@@ -118,6 +118,7 @@ const CreateProfileForm = () => {
                   type="text"
                   name="facebook"
                   className="form-control" 
+                  defaultValue={userProfile && userProfile.socialLinks.facebook}
                   placeholder="Facebook Profile Link (Optional)"
                   ref={register()}
                />
@@ -128,6 +129,7 @@ const CreateProfileForm = () => {
                   type="text"
                   name="twitter"
                   className="form-control" 
+                  defaultValue={userProfile && userProfile.socialLinks.twitter}
                   placeholder="Twitter Profile Link (Optional)"
                   ref={register()}
                />
@@ -138,6 +140,7 @@ const CreateProfileForm = () => {
                   type="text"
                   name="linkedin"
                   className="form-control" 
+                  defaultValue={userProfile && userProfile.socialLinks.linkedin}
                   placeholder="Linkedin Profile Link (Optional)"
                   ref={register()}
                />
@@ -150,6 +153,7 @@ const CreateProfileForm = () => {
                <input 
                   name="degree"
                   className='form-control'
+                  defaultValue={userProfile && userProfile.education.degree}
                   placeholder="Degree (Max Length 50 Characters)"
                   ref={register()}
                />
@@ -166,6 +170,7 @@ const CreateProfileForm = () => {
                <input 
                   name="institute"
                   className='form-control'
+                  defaultValue={userProfile && userProfile.education.institute}
                   placeholder="Institute (Max Length 100 Characters)"
                   ref={register()}
                />
@@ -184,6 +189,7 @@ const CreateProfileForm = () => {
                <input 
                   name="position"
                   className='form-control'
+                  defaultValue={userProfile && userProfile.work.position}
                   placeholder="Position (Max Length 50 Characters)"
                   ref={register()}
                />
@@ -200,6 +206,7 @@ const CreateProfileForm = () => {
                <input 
                   name="organization"
                   className='form-control'
+                  defaultValue={userProfile && userProfile.work.organization}
                   placeholder="Organization (Max Length 100 Characters)"
                   ref={register()}
                />
@@ -216,7 +223,7 @@ const CreateProfileForm = () => {
                   type="submit"
                   variant='contained'
                >
-                  Save Profile
+                  {profileEdit ? 'Edit & Save Profile' : 'Save Profile'}
                </Button>
             </div>
          </form>

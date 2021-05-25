@@ -6,8 +6,9 @@ import CreateProfileForm from './CreateProfileForm';
 import FormLoading from '../Loading/FormLoading';
 
 
-const CreateProfile = () => {
-   const {formLoader, userData} = useContextData()
+const CreateProfile = ({userProfile}) => {
+   const {formLoader, profileEdit, userData} = useContextData()
+
    const [open, setOpen] = React.useState(false);
    const handleClickOpen = () => {
       setOpen(true);
@@ -52,11 +53,16 @@ const CreateProfile = () => {
                }
                <Paper elevation={3} className="createProfile">
                   <div className='text-center'>
-                     <h3>Set Your Profile</h3>
+                     <h3>
+                        {
+                           profileEdit ? 
+                           'Edit Your Profile' : 
+                           'Set Your Profile'
+                        }
+                     </h3>
                   </div>
                   <div className='uploadImgSection'>
                      <img className="uploadedImg" src={userData ? userData.profilePic : picUrl} alt=""/>
-                     {/* <img className="uploadedImg" src={picUrl} alt=""/> */}
                      <div>
                         <input 
                            onChange={getFile} 
@@ -70,7 +76,7 @@ const CreateProfile = () => {
                            className="uploadBtn"
                            onClick={(e) => triggerFileSelect(e)}
                         >
-                           Upload
+                           {profileEdit ? 'Change Photo' : 'Upload'}
                         </Button>
                      </div>
                      <Dialog
@@ -99,7 +105,7 @@ const CreateProfile = () => {
                         </DialogActions>
                      </Dialog>
                   </div>
-                  <CreateProfileForm />
+                  <CreateProfileForm userProfile={userProfile} />
                </Paper>
             </div>
             <div className="col-md-3"></div>

@@ -1,0 +1,20 @@
+.paginationDiv{
+   padding: 5px 10px;
+   padding-top: 20px;
+   .pagination{
+      button{
+         @include btnCommonStyle;
+      }
+      .btnDisable{
+         background-color: gray !important;
+      }
+      .row {
+         a{
+            text-decoration: none;
+         }
+         .col-1{
+            margin-left: -12px;
+         }
+      }
+   }
+}

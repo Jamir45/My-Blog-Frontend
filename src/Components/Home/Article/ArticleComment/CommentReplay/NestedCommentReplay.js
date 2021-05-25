@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Avatar, Button } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
 import CommentReplay from './CommentReplay';
+import moment from 'moment';
+
 
 const NestedCommentReplay = (props) => {
    const {userData, articleId, commentId, commentReplay} = props;
    const {_id, user, replay, commentAt} = commentReplay
-   const toTime = new Date(commentAt).toLocaleString()
+   const postedOn = moment(commentAt).fromNow()
+   // const toTime = new Date(commentAt).toLocaleString()
    const [nestedReplayOpen, setNestedReplayOpen] = useState(null)
 
    return (
@@ -15,7 +17,7 @@ const NestedCommentReplay = (props) => {
          <div className="commentReplay">
             <div className='titleBar'>
                <p> {user && user.username} </p>
-               <p> {toTime} </p>
+               <p> {postedOn} </p>
             </div>
             <p className='replayBody'> 
                {replay}
