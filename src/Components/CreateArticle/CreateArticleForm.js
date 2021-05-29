@@ -39,10 +39,6 @@ const CreateArticleForm = ({article}) => {
       if (data && bodyText) {
          setFormLoader(true)
       }
-      // const postThumbnail = data.thumbnail[0]
-      // console.log(postThumbnail)
-      // const formData = new FormData()
-      // formData.append('file', postThumbnail)
    }
 
    const [image, setImage] = useState(null)

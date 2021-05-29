@@ -6,7 +6,6 @@ import { useContextData } from '../../ContextProvider/ContextProvider';
 const Pagination = (props) => {
    const { setFilterData, setPageNumber} = useContextData()
    const {filter, pageNo} = useParams()
-   console.log(pageNo)
    useEffect(() => {
       if (pageNo) {
          setFilterData(filter)

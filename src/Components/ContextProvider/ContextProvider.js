@@ -36,7 +36,7 @@ const Contexts = () => {
       setMessage(null)
    }, 4000)
 
-   const url = 'http://localhost:3005'
+   const url = 'https://my-blog-article.herokuapp.com'
    const token = getCookie('myBlogToken');
 
    // Manage Signed User 

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { Button, Dialog, DialogActions, DialogTitle, IconButton, Paper } from '@material-ui/core';
+import { Button, Dialog, DialogActions, IconButton, Paper } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -48,7 +48,6 @@ const MoreButton = (props) => {
    const handleClose = () => {
       setPopupOpen(false);
    };
-   
    const bookmarked = userData && userData.bookmarks.includes(_id)
 
    return (

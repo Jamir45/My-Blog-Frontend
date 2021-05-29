@@ -7,7 +7,6 @@ import Article from '../../Home/Article/Article';
 
 const ProfileContent = (props) => {
    const {userData, userProfile, allArticles} = props;
-   console.log(allArticles)
    const {setAuthorArticles} = useContextData()
    const {_id, follower, following} = userData
    useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import countryData from '../../Files/countries+states.json'
 import LanguageIcon from '@material-ui/icons/Language';
@@ -8,7 +8,6 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { Button } from '@material-ui/core';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import ProfileHandler from '../ContextProvider/Handler/ProfileHandler';
-import { getCookie } from '../SignupAndSignin/Signin/SigninHelper';
 
 const CreateProfileForm = ({userProfile}) => {
    const {setFormLoader, userData, profileEdit} = useContextData()
@@ -19,7 +18,6 @@ const CreateProfileForm = ({userProfile}) => {
    
    const onSubmit = data => { 
       if (profileEdit) {
-         console.log("Edited Data ", data)
          editProfileData(data)
          setFormLoader(true)
       } else {

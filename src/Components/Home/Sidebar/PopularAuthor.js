@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 const PopularAuthor = (props) => {
    const { author, allArticles } = props;
-   // console.log(allArticles)
-
    const [authorLikes, setAuthorLikes] = useState(null)
    const [authorComments, setAuthorComments] = useState(null)
    
@@ -25,9 +23,6 @@ const PopularAuthor = (props) => {
          }
       }
    }, [author && allArticles])
-   // console.log(authorLikes)
-   // console.log(authorComments)
-   // const {_id, title, likes, dislikes, comments, readTime, createdAt} = articles
 
    return (
       <div className="popularArticleDetails">

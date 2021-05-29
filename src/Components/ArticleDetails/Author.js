@@ -8,26 +8,22 @@ const Author = (props) => {
    const {article, authorProfile} = props
    const {user, allUsers} = useContextData()
    const {followUnFollow} = UserHandler()
-
    const {_id, createdAt, username, profilePic} = article.author
 
    const [articleAuthor, setArticleAuthor] = useState()
-   console.log(articleAuthor)
    useEffect(() => {
       if (allUsers) {
          const userData = allUsers.find(data => data._id === _id)
          setArticleAuthor(userData)
       }
    }, [allUsers])
-   const followerUser = articleAuthor && articleAuthor.follower.includes(user.userId)
+   const followerUser = articleAuthor && user && articleAuthor.follower.includes(user && user.userId)
 
-   const {country, bio, socialLinks, education, work} = authorProfile;
+   const {country, bio, education, work} = authorProfile;
    const toDate = new Date(createdAt).toDateString().slice(4)
-   console.log(toDate)
 
-   const {website, facebook, twitter, linkedin} = socialLinks
-   const {degree, institute} = education
-   const {position, organization} = work
+   const {degree} = education
+   const {position} = work
 
    return (
       <>

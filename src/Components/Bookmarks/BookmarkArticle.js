@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Paper, Button, Avatar} from '@material-ui/core';
-import { useContextData } from '../ContextProvider/ContextProvider';
+import React from 'react';
+import { Button, Avatar} from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import LikeCommentHandler from '../ContextProvider/Handler/LikeCommentHandler';
 
 const BookmarkArticle = ({article}) => {
-   const {allUsers} = useContextData()
    const {bookmarkPost} = LikeCommentHandler()
    const {_id, author, title, readTime, createdAt, tags} = article
    const toDate = new Date(createdAt).toDateString().slice(4)

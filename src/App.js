@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -23,7 +22,6 @@ import Bookmark from './Components/Bookmarks/Bookmarks';
 import PopularArticlePage from './Components/Home/PopularArticle/PopularArticlePage';
 import ArticleAuthorProfile from './Components/Profile/ArticleAuthorProfile'
 import EditProfile from './Components/EditProfile/EditProfile';
-import QuiryParams from './Components/QuiryTest/QuiryParams';
 
 function App() {
   const [header, setHeader] = useState(true)

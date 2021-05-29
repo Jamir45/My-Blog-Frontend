@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button } from '@material-ui/core';
+import { Avatar } from '@material-ui/core';
 import CommentReplay from './CommentReplay';
 import moment from 'moment';
 
@@ -8,7 +8,6 @@ const NestedCommentReplay = (props) => {
    const {userData, articleId, commentId, commentReplay} = props;
    const {_id, user, replay, commentAt} = commentReplay
    const postedOn = moment(commentAt).fromNow()
-   // const toTime = new Date(commentAt).toLocaleString()
    const [nestedReplayOpen, setNestedReplayOpen] = useState(null)
 
    return (

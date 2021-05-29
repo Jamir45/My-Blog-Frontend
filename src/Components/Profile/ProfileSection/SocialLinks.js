@@ -6,12 +6,25 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const SocialLinks = ({socialLinks}) => {
    const {website, facebook, twitter, linkedin} = socialLinks
+   
    return (
       <ul className="d-flex justify-content-center socialLinks">
-         <a href={website} target="_blank"> <LanguageIcon/> </a>
-         <a href={facebook} target="_blank"> <FacebookIcon/> </a>
-         <a href={twitter} target="_blank"> <TwitterIcon/> </a>
-         <a href={linkedin} target="_blank"> <LinkedInIcon/> </a>
+         {
+            website !== "" && 
+            <a href={website} target="_blank"> <LanguageIcon/> </a>
+         }
+         {
+            facebook !== "" && 
+            <a href={facebook} target="_blank"> <FacebookIcon/> </a>
+         }
+         {
+            twitter !== "" && 
+            <a href={twitter} target="_blank"> <TwitterIcon/> </a>
+         }
+         {
+            linkedin !== "" && 
+            <a href={linkedin} target="_blank"> <LinkedInIcon/> </a>
+         }       
       </ul>
    );
 };

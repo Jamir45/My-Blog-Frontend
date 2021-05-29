@@ -17,7 +17,7 @@ const Article = ({articles}) => {
    const postedOn = moment(createdAt).fromNow()
 
    const toDate = new Date(createdAt).toDateString().slice(4)
-   const {user, userData, allComments, articleDetail, authorArticles} = useContextData()
+   const {user, allComments, articleDetail, authorArticles} = useContextData()
 
    const [articleComments, setArticleComments] = useState(null)
    useEffect(() => {

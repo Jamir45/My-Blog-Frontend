@@ -1,10 +1,9 @@
 import React from 'react';
-import { Avatar, Badge, Button, IconButton } from '@material-ui/core';
+import { Avatar, Badge, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import HoverMenu from './HoverMenu/HoverMenu';
 import SidebarMenu from './SidebarMenu/SidebarMenu';
-import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { useForm } from 'react-hook-form';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -17,7 +16,6 @@ const Header = () => {
       userData, 
       setPopularArticle
    } = useContextData()
-   console.log(userData)
 
    // Make Logical Navigation var
    const logicalNav = () => {
@@ -51,9 +49,7 @@ const Header = () => {
       }
    }
 
-   const { register, handleSubmit, errors, watch } = useForm();
-   const {bio, degree, institute, position, organization} = watch()
-   
+   const { register, handleSubmit, errors, watch } = useForm();   
    const onSubmit = data => { 
       console.log(data)
    } 

@@ -30,7 +30,7 @@ const TextEditor = (props) => {
                let formData = new FormData()
                formData.append('file', blobInfo.blob(), blobInfo.filename())
 
-               let req = new Request('http://localhost:3005/upload/postImage', {
+               let req = new Request('https://my-blog-article.herokuapp.com/upload/postImage', {
                   method: 'POST',
                   headers,
                   mode: 'cors',

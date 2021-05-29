@@ -5,7 +5,6 @@ import CreateArticleForm from './CreateArticleForm';
 
 const CreateArticle = () => {
    const {formLoader, } = useContextData()
-   console.log(formLoader)
 
    // const { register, handleSubmit, watch, errors } = useForm();
    // const onSubmit = async data => {

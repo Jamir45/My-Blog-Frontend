@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button, Paper } from '@material-ui/core';
 import RoomIcon from '@material-ui/icons/Room';
 import CakeIcon from '@material-ui/icons/Cake';
+import PersonIcon from '@material-ui/icons/Person';
 import SocialLinks from './SocialLinks';
 import UserHandler from '../../ContextProvider/Handler/UserHandler';
 import { useContextData } from '../../ContextProvider/ContextProvider';
@@ -16,7 +17,6 @@ const ProfileSection = (props) => {
    const followerUser = follower.includes(user && user.userId)
 
    const toDate = new Date(createdAt).toDateString().slice(4)
-
    const {country, bio, socialLinks, education, work} = userProfile;
 
    const workAndEducation = (education, work) => {
@@ -50,6 +50,7 @@ const ProfileSection = (props) => {
             }
             <ul className="d-flex justify-content-center joinAndCountry">
                <li> <RoomIcon /> {country} </li>
+               <li> <PersonIcon /> Gender {gender} </li>
                <li> <CakeIcon /> Joined at {toDate} </li>
             </ul>
             {

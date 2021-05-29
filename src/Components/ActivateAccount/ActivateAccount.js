@@ -14,7 +14,7 @@ const ActivateAccount = ({setHeader}) => {
    const params = useParams()
    const history = useHistory()
 
-   const url = 'http://localhost:3005/user'
+   const url = 'https://my-blog-article.herokuapp.com/user'
    const activateHandler = async () => {
       const result = await axios.post(url+'/activation', {token:params.userToken})
       console.log(result.data)

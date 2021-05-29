@@ -1,15 +1,12 @@
 import { Paper } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useContextData } from '../ContextProvider/ContextProvider';
-import LikeCommentHandler from '../ContextProvider/Handler/LikeCommentHandler';
 import BookmarkArticle from './BookmarkArticle';
 
 const Bookmarks = () => {
-   const {bookmarkPost} = LikeCommentHandler()
-   const {user, allArticles, userData} = useContextData()
+   const {allArticles, userData} = useContextData()
 
    const [bookmarks, setBookmarks] = useState(null)
-   console.log(bookmarks)
    useEffect(() => {
       if (allArticles && userData) {
          const bookmarksArray = []

@@ -3,7 +3,6 @@ import Cropper from 'react-easy-crop'
 import { Button, Slider, Typography } from '@material-ui/core'
 import getCroppedImg from './cropImage'
 import useStyles from './styles'
-import { getCookie } from '../SignupAndSignin/Signin/SigninHelper'
 import ProfileHandler from '../ContextProvider/Handler/ProfileHandler'
 import { useContextData } from '../ContextProvider/ContextProvider'
 

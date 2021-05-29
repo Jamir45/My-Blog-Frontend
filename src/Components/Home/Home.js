@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import Article from './Article/Article';
 import PopularArticle from './PopularArticle/PopularArticle';
@@ -6,7 +6,6 @@ import ComponentLoading from '../Loading/Loading';
 import Sidebar from './Sidebar/Sidebar';
 import { Link, useParams } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-// import Pagination from '@material-ui/lab/Pagination';
 import Pagination from './Pagination/Pagination'
 
 const Home = () => {

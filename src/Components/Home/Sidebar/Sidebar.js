@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Avatar, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import { useContextData } from '../../ContextProvider/ContextProvider';
 import PopularAuthor from './PopularAuthor';
 

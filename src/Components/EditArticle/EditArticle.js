@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import CreateArticleForm from '../CreateArticle/CreateArticleForm';
@@ -7,7 +7,6 @@ import FormLoading from '../Loading/FormLoading';
 const EditArticle = () => {
    const {editArticleId} = useParams()
    const {formLoader, allArticles} = useContextData()
- 
 
    const article = allArticles && allArticles.find(articles => {
       if (articles) {
