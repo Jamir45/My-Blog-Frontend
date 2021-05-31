@@ -36,8 +36,10 @@ const Signin = ({setHeader}) => {
    const {userSignin} = UserHandler()
    const onSubmit = async () => {
       const {email, password} = values
-      setFormLoader(true)
       userSignin(email, password, setErrors)
+      if (email && password) {
+         setFormLoader(true)
+      }
    };
 
    return (
@@ -46,26 +48,28 @@ const Signin = ({setHeader}) => {
          <div className='row signUpSingInForm'>
             <div className='col-md-3'></div>
             <div className='col-md-6'>
-               <Paper className='signupPaper' elevation={3}>
-                  <div className="text-center">
-                     <h5 className='Title'>Sign In On Your Account</h5>
-                  </div>
-                  <SigninForm
-                     values={values}
-                     setValues={setValues}
-                     handleSubmit={handleSubmit}
-                     onSubmit={onSubmit}
-                  />
-                  {/* <div className='row orOptionDiv'>
-                     <span className='orOption col-5'></span>
-                     <span className='col-2 text-center'>OR</span>
-                     <span className='orOption col-5'></span>
-                  </div>
-                  <CommonForm></CommonForm> */}
-               </Paper>
-               {
-                  formLoader && <FormLoading />
-               }
+               <div className='signupFormDiv'>
+                  <Paper className='signupPaper' elevation={3}>
+                     <div className="text-center">
+                        <h5 className='Title'>Sign In On Your Account</h5>
+                     </div>
+                     <SigninForm
+                        values={values}
+                        setValues={setValues}
+                        handleSubmit={handleSubmit}
+                        onSubmit={onSubmit}
+                     />
+                     {/* <div className='row orOptionDiv'>
+                        <span className='orOption col-5'></span>
+                        <span className='col-2 text-center'>OR</span>
+                        <span className='orOption col-5'></span>
+                     </div>
+                     <CommonForm></CommonForm> */}
+                  </Paper>
+                  {
+                     formLoader && <FormLoading />
+                  }
+               </div>
             </div>
             <div className="py-5"></div>
             <div className='col-md-3'></div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import './Style/App.scss'
 import {
   BrowserRouter as Router,
@@ -22,6 +22,8 @@ import Bookmark from './Components/Bookmarks/Bookmarks';
 import PopularArticlePage from './Components/Home/PopularArticle/PopularArticlePage';
 import ArticleAuthorProfile from './Components/Profile/ArticleAuthorProfile'
 import EditProfile from './Components/EditProfile/EditProfile';
+import Footer from './Components/Footer/Footer';
+import PopularAuthorPage from './Components/Home/Sidebar/PopularAuthorPage';
 
 function App() {
   const [header, setHeader] = useState(true)
@@ -64,6 +66,9 @@ function App() {
           <Route path="/popular-article">
             <PopularArticlePage />
           </Route>
+          <Route path="/popular-author">
+            <PopularAuthorPage />
+          </Route>
           <Route path="/article/edit/:editArticleId">
             <EditArticle />
           </Route>
@@ -73,8 +78,8 @@ function App() {
           <Route path="/account/activate/:userToken">
             <ActivateAccount setHeader={setHeader} />
           </Route>
-          
         </Switch>
+        <Footer />
       </Router>
     </ContextDataProvider>
   );

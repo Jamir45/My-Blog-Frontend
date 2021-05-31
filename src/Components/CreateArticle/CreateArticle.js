@@ -22,11 +22,13 @@ const CreateArticle = () => {
       <div className="container">
          <div className="row">
             <div className="col-md-2"></div>
-            <div className="col-md-8 createArticleDiv">
-               <CreateArticleForm/>
-               {
-                  formLoader && <FormLoading />
-               }
+            <div className="col-md-8">
+               <div className="createArticleDiv">
+                  <CreateArticleForm/>
+                  {
+                     formLoader && <FormLoading />
+                  }
+               </div>
             </div>
             <div className="col-md-2"></div>
          </div>

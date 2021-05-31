@@ -11,7 +11,7 @@ const PopularArticlePage = () => {
    })
 
    return (
-      <div>
+      <div className='popularArticlePage'>
          {
             sortedArticle && 
             sortedArticle.map(article => <Article articles={article} />)

@@ -10,26 +10,26 @@ const ArticleHandler = () => {
       allUsers,
       setAllUsers,
       setFormLoader, 
+      homeArticles, 
+      setHomeArticles,
       allArticles, 
       setAllArticles
    } = useContextData()
    const {resultUpdater} = LikeCommentHandler()
-   const url = 'https://my-blog-article.herokuapp.com'
+   const url = 'http://localhost:3005'
    const token = getCookie('myBlogToken')
    const history = useHistory()
-
 
    const resultHandler = (result) => {
       if (result.data.error || result.data.success) {
          setFormLoader(false)
          if (result.data.success) {
             const {success, createdArticle, updatedUser} = result.data
-            console.log(updatedUser)
             toast.success(success)
             setAllArticles([createdArticle, ...allArticles])
+            setHomeArticles([createdArticle, ...homeArticles])
             const userUpdated = resultUpdater(allUsers, updatedUser)
             setAllUsers(userUpdated)
-
             history.push('/')
          } else {
             toast.error(result.data.error)
@@ -68,7 +68,6 @@ const ArticleHandler = () => {
          }, {
             headers: {authorization: token}
          })
-         console.log(result.data)
          resultHandler(result)
       }
    }
@@ -81,6 +80,8 @@ const ArticleHandler = () => {
             toast.success(success)
             const articleUpdated = resultUpdater(allArticles, updatedArticle)
             setAllArticles(articleUpdated)
+            const articleUpdatedHome = resultUpdater(homeArticles, updatedArticle)
+            setHomeArticles(articleUpdatedHome)
             if (updatedArticle) {
                history.push('/article/details/'+updatedArticle._id)
             }
@@ -92,10 +93,8 @@ const ArticleHandler = () => {
 
    const editArticle = async (data, bodyText) => {
       const {title, thumbnail, searchTags} = data
-
       if (thumbnail.length === 1) {
          const postThumbnail = thumbnail[0]
-         console.log(postThumbnail)
          const formData = new FormData()
          formData.append('file', postThumbnail)
          const result = await axios.post(url+'/upload/post-thumbnail', formData, {
@@ -142,10 +141,13 @@ const ArticleHandler = () => {
                   return post._id !== deletedArticle._id
                })
                setAllArticles(articleDeleted)
+               const articleDeletedHome = homeArticles.filter(post => {
+                  return post._id !== deletedArticle._id
+               })
+               setHomeArticles(articleDeletedHome)
 
                const updatedUserData = resultUpdater(allUsers, updatedUser)
                setAllUsers(updatedUserData)
-               
             } else {
                toast.error(result.data.error)
             }

@@ -14,6 +14,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { useContextData } from '../../ContextProvider/ContextProvider';
 import { Badge } from '@material-ui/core';
 
@@ -69,6 +70,12 @@ const SidebarMenu = ({signout, user}) => {
                   </Link> 
                </ListItem>
                <ListItem button>
+                  <SupervisorAccountIcon/> 
+                  <Link to="/popular-author" className="ml-3" >
+                     Popular Author
+                  </Link> 
+               </ListItem>
+               <ListItem button>
                   <BookmarkIcon/> 
                   <Link to="/bookmarks" className="ml-3" >
                      Bookmarks
@@ -108,8 +115,14 @@ const SidebarMenu = ({signout, user}) => {
                </ListItem>
                <ListItem button>
                   <AssignmentIcon/> 
-                  <Link className="ml-3" >
+                  <Link to="/popular-article" className="ml-3" >
                      Popular Article
+                  </Link> 
+               </ListItem>
+               <ListItem button>
+                  <SupervisorAccountIcon/> 
+                  <Link to="/popular-author" className="ml-3" >
+                     Popular Author
                   </Link> 
                </ListItem>
                <ListItem button>
@@ -133,7 +146,7 @@ const SidebarMenu = ({signout, user}) => {
    return (
       <div className='d-block d-md-none'>
          <React.Fragment key={"left"}>
-            <MenuIcon onClick={toggleDrawer("left", true)} />
+            <MenuIcon id="menuIcon" onClick={toggleDrawer("left", true)} />
             <Drawer anchor={"left"} open={state["left"]} onClose={toggleDrawer("left", false)}>
                {list("left")}
             </Drawer>

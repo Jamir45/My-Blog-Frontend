@@ -31,7 +31,7 @@ const Article = ({articles}) => {
       <Paper className="articleBox" elevation={1}>
          {
             !authorArticles && 
-            <img className='img-fluid' src={articleThumbnail} alt=""/>
+            <img className='img-fluid thumbnailImg' src={articleThumbnail} alt=""/>
          }
          <div className="articleDetails">
             <div className="d-flex justify-content-between">

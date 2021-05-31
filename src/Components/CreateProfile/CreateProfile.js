@@ -47,66 +47,68 @@ const CreateProfile = ({userProfile}) => {
       <div className="container">
          <div className="row">
             <div className="col-md-3"></div>
-            <div className="col-md-6 createProfileDiv">
-               {
-                  formLoader && <FormLoading />
-               }
-               <Paper elevation={3} className="createProfile">
-                  <div className='text-center'>
-                     <h3>
-                        {
-                           profileEdit ? 
-                           'Edit Your Profile' : 
-                           'Set Your Profile'
-                        }
-                     </h3>
-                  </div>
-                  <div className='uploadImgSection'>
-                     <img className="uploadedImg" src={userData ? userData.profilePic : picUrl} alt=""/>
-                     <div>
-                        <input 
-                           onChange={getFile} 
-                           type="file" 
-                           ref={inputRef} 
-                           style={{display: 'none'}}
-                        />
-                        <Button
-                           variant='contained'
-                           color="primary"
-                           className="uploadBtn"
-                           onClick={(e) => triggerFileSelect(e)}
-                        >
-                           {profileEdit ? 'Change Photo' : 'Upload'}
-                        </Button>
+            <div className="col-md-6">
+               <div className="createProfileDiv">
+                  {
+                     formLoader && <FormLoading />
+                  }
+                  <Paper elevation={3} className="createProfile">
+                     <div className='text-center'>
+                        <h3>
+                           {
+                              profileEdit ? 
+                              'Edit Your Profile' : 
+                              'Set Your Profile'
+                           }
+                        </h3>
                      </div>
-                     <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="alert-dialog-title"
-                        aria-describedby="alert-dialog-description"
-                        className="imageCropDialog"
-                     >
-                        {
-                           formLoader && <FormLoading />
-                        }
-                        <DialogTitle id="alert-dialog-title" className="text-center px-5">
-                           Please Crop Your Image Before Upload.
-                        </DialogTitle>
-                        <DialogContent>
-                           <ImageCropper 
-                              image={image} 
-                              handleClose={handleClose}
+                     <div className='uploadImgSection'>
+                        <img className="uploadedImg" src={userData ? userData.profilePic : picUrl} alt=""/>
+                        <div>
+                           <input 
+                              onChange={getFile} 
+                              type="file" 
+                              ref={inputRef} 
+                              style={{display: 'none'}}
                            />
-                        </DialogContent>
-                        <DialogActions>
-                           <Button onClick={handleClose} color="primary">
-                              Cancel
+                           <Button
+                              variant='contained'
+                              color="primary"
+                              className="uploadBtn"
+                              onClick={(e) => triggerFileSelect(e)}
+                           >
+                              {profileEdit ? 'Change Photo' : 'Upload'}
                            </Button>
-                        </DialogActions>
-                     </Dialog>
-                  </div>
-                  <CreateProfileForm userProfile={userProfile} />
-               </Paper>
+                        </div>
+                        <Dialog
+                           open={open}
+                           onClose={handleClose}
+                           aria-labelledby="alert-dialog-title"
+                           aria-describedby="alert-dialog-description"
+                           className="imageCropDialog"
+                        >
+                           {
+                              formLoader && <FormLoading />
+                           }
+                           <DialogTitle id="alert-dialog-title" className="text-center px-5">
+                              Please Crop Your Image Before Upload.
+                           </DialogTitle>
+                           <DialogContent>
+                              <ImageCropper 
+                                 image={image} 
+                                 handleClose={handleClose}
+                              />
+                           </DialogContent>
+                           <DialogActions>
+                              <Button onClick={handleClose} color="primary">
+                                 Cancel
+                              </Button>
+                           </DialogActions>
+                        </Dialog>
+                     </div>
+                     <CreateProfileForm userProfile={userProfile} />
+                  </Paper>
+               </div>
             </div>
             <div className="col-md-3"></div>
          </div>

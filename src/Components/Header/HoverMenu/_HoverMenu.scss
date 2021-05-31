@@ -10,7 +10,7 @@
    top: 54px;
    right: 5px;
    transition: all 0.5s !important;
-   p {
+   #hoverUserName {
       text-align: center;
       margin-bottom: 0;
       padding: 15px 10px;
@@ -27,7 +27,7 @@
          @include hoverLinkColor;
       }
    }
-   ul{
+   #hoverUl {
       list-style: none;
       margin-left: -5px;
       padding-left: 0;
@@ -41,13 +41,13 @@
             margin-top: -3px !important;
          }
          a{
-            color: rgb(36, 36, 36) !important;
             font-weight: normal !important;
             font-size: 16px !important;
             text-decoration: none;
             .badge {
                @include badgeStyle;
             }
+            color: rgb(36, 36, 36) !important;
          }
       }
       li:hover{

@@ -1,8 +1,10 @@
+.sidebarLeft{
+   padding-right: 0px !important;
+}
 .HomeSidebar{
-   width: 22%;
    @include sidebarDivAndHeading;
    .popularArticleDetails{
-      padding: 15px 0px;
+      padding: 20px 0px;
       display: flex;
       .popularArticleControl{
          width: 100%;

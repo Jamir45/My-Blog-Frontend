@@ -5,7 +5,7 @@ import PopularAuthor from './PopularAuthor';
 
 const Sidebar = () => {
    const {allUsers, allArticles} = useContextData()
-   const newArray = allUsers.slice()
+   const newArray = allUsers && allUsers.slice()
    const [sortedAuthor, setSortedAuthor] = useState(null)
    useEffect(() => {
       if (allUsers && newArray) {

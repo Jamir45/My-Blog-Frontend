@@ -42,6 +42,7 @@
 @import '../Components/Home/Article/Article';
 @import '../Components/Home/Article/ArticleComment/ArticleComment';
 @import '../Components/Home/Article/ArticleController/ArticleController';
+@import '../Components/Home/PopularArticle/PopularArticlePage';
 @import '../Components/Home/Pagination/Pagination';
 @import '../Components/Home/Sidebar/Sidebar';
 
@@ -66,3 +67,6 @@
 
 // import bookmark page style
 @import '../Components/Bookmarks/Bookmarks';
+
+// import footer page style
+@import '../Components/Footer/Footer';

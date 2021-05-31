@@ -36,12 +36,11 @@ const Contexts = () => {
       setMessage(null)
    }, 4000)
 
-   const url = 'https://my-blog-article.herokuapp.com'
+   const url = 'http://localhost:3005'
    const token = getCookie('myBlogToken');
 
    // Manage Signed User 
    const [user, setUser] = useState(null)
-   console.log(user)
    const loggedInToken = isAuthenticated()
    useEffect(() => {
       const loggedUser = loggedInToken && jwtDecode(loggedInToken)
@@ -99,7 +98,6 @@ const Contexts = () => {
 
    // get all users data
    const [allUsers, setAllUsers] = useState(null)
-   console.log(allUsers)
    useEffect(() => {
       axios.get(url+'/user/get/all-users')
       .then(result => {
@@ -124,7 +122,6 @@ const Contexts = () => {
    useEffect(() => {
       axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
          .then(result => {
-            console.log(result.data)
             setHomeArticles(result.data.homeArticles)
             setTotalPage(result.data.totalPage)
          })
@@ -133,7 +130,6 @@ const Contexts = () => {
       if (filterData) {
          axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
          .then(result => {
-            console.log(result.data)
             setHomeArticles(result.data.homeArticles)
             setTotalPage(result.data.totalPage)
          })
@@ -143,7 +139,6 @@ const Contexts = () => {
       if (pageNumber) {
          axios.get(`${url}/get/home/article/filter/${filterData || 'latest'}/page=${pageNumber || 1}`)
          .then(result => {
-            console.log(result.data)
             setHomeArticles(result.data.homeArticles)
             setTotalPage(result.data.totalPage)
          })

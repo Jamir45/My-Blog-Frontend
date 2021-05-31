@@ -15,13 +15,13 @@ const TextEditor = (props) => {
          menubar: true,
          plugins: [
             'advlist autolink lists link image charmap print preview anchor',
-            'searchreplace visualblocks code fullscreen',
+            'searchreplace visualblocks code fullscreen emoticons',
             'insertdatetime media table paste code help wordcount'
          ],
-         toolbar: 'undo redo | formatselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code preview' ,
+         toolbar: 'undo redo | formatselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | emoticons | code preview' ,
          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
          automatic_uploads: true,
-         images_upload_url: 'http://localhost:3000/upload/postImage',
+         images_upload_url: 'http://localhost:3005/upload/postImage',
          images_upload_handler: function(blobInfo, success, failure) {
                let headers = new Headers()
                headers.append('Accept', 'Application/JSON')
@@ -30,7 +30,7 @@ const TextEditor = (props) => {
                let formData = new FormData()
                formData.append('file', blobInfo.blob(), blobInfo.filename())
 
-               let req = new Request('https://my-blog-article.herokuapp.com/upload/postImage', {
+               let req = new Request('http://localhost:3005/upload/postImage', {
                   method: 'POST',
                   headers,
                   mode: 'cors',

@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import useStyles from './SignupFormStyle'
 import { useContextData } from '../../ContextProvider/ContextProvider';
 
-
 const SignupForm = (props) => {
    const {values, handleSubmit, onSubmit, setValues} = props
    const {signupErrors, setSignupErrors} = useContextData()
-   // const { email, gender, password, confirm_password} = signupErrors && signupErrors
    useEffect(() => {
       if (signupErrors) {
          setTimeout( () => {

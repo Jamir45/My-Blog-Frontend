@@ -19,8 +19,8 @@ const Bookmarks = () => {
    }, [userData])
 
    return (
-      <div className='container'>
-         <div className="row pt-3">
+      <div className='container BookmarkPage'>
+         <div className="row">
             <div className="col-md-1"></div>
             <Paper className='col-md-10' elevation={1} >
                {

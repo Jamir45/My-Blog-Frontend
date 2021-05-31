@@ -10,7 +10,8 @@ const ProfileHandler = () => {
    const history = useHistory()
    const {user, setUser, setFormLoader, setUserData, setUserProfile} = useContextData()
    const token = getCookie('myBlogToken')
-   const url = 'https://my-blog-article.herokuapp.com/user/profile'
+   // https://my-blog-article.herokuapp.com
+   const url = 'http://localhost:3005/user/profile'
 
    const resultHandler = (result) => {
       if (result.data.success || result.data.error) {
@@ -18,11 +19,9 @@ const ProfileHandler = () => {
             const {savedProfile, token, success} = result.data
             if (token) {
                authenticate(token, () => {
-                  const {username} = jwtDecode(token)
-                  toast.success(`Hey ${username}, Welcome back!`);
+                  const loggedUser = jwtDecode(token)
+                  setUser(loggedUser)
                });
-               const loggedUser = jwtDecode(token)
-               setUser(loggedUser)
             }
             setFormLoader(false)
             setUserProfile(savedProfile)

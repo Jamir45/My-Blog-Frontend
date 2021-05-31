@@ -7,12 +7,14 @@ const LikeCommentHandler = () => {
    const {
       setUserData,
       allArticles, 
+      homeArticles,
+      setHomeArticles,
       setAllArticles,
       allComments, 
       setAllComments
    } = useContextData()
    const token = getCookie('myBlogToken')
-   const url = 'https://my-blog-article.herokuapp.com'
+   const url = 'http://localhost:3005'
 
    const resultUpdater = (oldDataArray, newData) => {
       const result = oldDataArray.map(data => {
@@ -64,9 +66,12 @@ const LikeCommentHandler = () => {
       const result = await axios.put(`${url}/article/${action}/${articleId}`, {}, {
          headers: {authorization: token}
       })
+      console.log(result.data)
       if (!result.data.error) {
-         const likedArticle = resultUpdater(allArticles, result.data)
-         setAllArticles(likedArticle)
+         const likedArticle = resultUpdater(homeArticles, result.data)
+         setHomeArticles(likedArticle)
+         const likedDetailsPage = resultUpdater(allArticles, result.data)
+         setAllArticles(likedDetailsPage)
       } else {
          toast.error(result.data.error)
       }

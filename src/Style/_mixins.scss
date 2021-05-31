@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@mixin myBlogText{
+   color: $commonColor;
+   span {color: greenyellow}
+   font-family: 'Righteous', cursive;
+}
 @mixin btnCommonStyle {
    background-color: #3b49df !important;
    font-weight: 600 !important;
@@ -34,7 +40,6 @@
    z-index: 3;
    background-color: rgba(22, 22, 22, 0.479);
    strong{
-      // color: #f2075b;
       font-size: 18px;
       font-weight: 500;
       color: white;
@@ -65,9 +70,13 @@
       border: 1px solid lightgray;
       box-shadow: none;
       margin-bottom: 15px;
+      .thumbnailImg{
+         margin-bottom: 22px;
+      }
       .articleDetails{
          margin: 0px 15px;
-         padding-bottom: 10;
+         padding-bottom: 10px;
+         // padding-top: 0;
       }
       .userProfile{
          display: flex;
@@ -124,9 +133,9 @@
 
 // Home Left and Right Sidebar Common Style
 @mixin sidebarDivAndHeading {
-   position: fixed;
    padding: 10px;
-   height: 590px;
+   min-height: 590px;
+   max-height: 1042px;
    overflow: auto;
    h5 {
       text-align: center;

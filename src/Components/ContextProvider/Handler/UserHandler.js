@@ -9,8 +9,8 @@ import LikeCommentHandler from "./LikeCommentHandler";
 
 const UserHandler = () => {
    const history = useHistory()
-   const {setUser, userData, setUserData, allUsers, setAllUsers, setFormLoader, setUserProfile, setSignupErrors} = useContextData()
-   const url = 'https://my-blog-article.herokuapp.com/user'
+   const {setUser, setUserData, allUsers, setAllUsers, setFormLoader, setUserProfile, setSignupErrors} = useContextData()
+   const url = 'http://localhost:3005/user'
    const token = getCookie('myBlogToken')
    const {resultUpdater} = LikeCommentHandler()
    

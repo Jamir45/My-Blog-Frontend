@@ -56,12 +56,12 @@ const Header = () => {
 
    return (
       <div className="topMenu">
-         <nav class="navbar navbar-expand fixed-top shadow-sm navbar-light bg-white">
+         <nav class="navbar navbar-expand fixed-top shadow-sm navbar-light">
             {toastMessage()}
             <div class="container container-fluid">
                <SidebarMenu signout={signout} user={user}/>
                <Link onClick={() => setPopularArticle(false)} className="navbar-brand" to="/" >
-                  <h4>My Blog</h4>
+                  <h4>MY <span>BLOG</span></h4>
                </Link>
                
                <div class="collapse navbar-collapse">

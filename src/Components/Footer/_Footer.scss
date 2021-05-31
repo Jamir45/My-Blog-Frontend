@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+$commonColor: white;
+
+.footerSection{
+   background-color: #1d4354;
+   margin-top: 40px;
+   .row {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      .col-md-3{
+         h4{@include myBlogText}
+         p{
+            font-size: 19px;
+            margin-bottom: 3px;
+            color: $commonColor;
+            font-family: 'Lobster', cursive;
+         }
+         ul {
+            list-style: none;
+            padding-left: 0;
+            li {
+               color: $commonColor;
+               svg{
+                  font-size: 20px;
+               }
+               a{
+                  text-decoration: none;
+                  color: $commonColor;
+               }
+            }
+         }
+      }
+   }
+}
