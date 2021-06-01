@@ -10,10 +10,10 @@ import FormLoading from '../../Loading/FormLoading';
 
 
 
-const Signin = ({setHeader}) => {
+const Signin = ({setHeaderFooter}) => {
    const { toastMessage, formLoader, setFormLoader} = useContextData()
    useEffect(() => {
-      setHeader(true)
+      setHeaderFooter(true)
    }, [])
 
    const history = useHistory();

@@ -16,7 +16,7 @@ const ArticleHandler = () => {
       setAllArticles
    } = useContextData()
    const {resultUpdater} = LikeCommentHandler()
-   const url = 'http://localhost:3005'
+   const url = 'https://my-blog-articl.herokuapp.com'
    const token = getCookie('myBlogToken')
    const history = useHistory()
 

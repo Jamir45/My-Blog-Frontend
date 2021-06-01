@@ -37,12 +37,22 @@ const Author = (props) => {
             </div>
             <div className="profileBody">
                <p> {bio} </p>
-               <Button 
-                  variant='contained'
-                  onClick={() => followUnFollow(_id)}
-               >
-                  {followerUser ? 'Unfollow' : 'Follow'}
-               </Button>
+               {
+                  user && user.userId === _id ?
+                  <Link to="/user/profile">
+                     <Button 
+                        variant='contained'
+                     >
+                        Go To Profile
+                     </Button>
+                  </Link> :
+                  <Button 
+                     variant='contained'
+                     onClick={() => followUnFollow(_id)}
+                  >
+                     {followerUser ? 'Unfollow' : 'Follow'}
+                  </Button>
+               }
                <label>LOCATION</label>
                <p> {country} </p>
                <label>WORK</label>

@@ -10,8 +10,8 @@ const ProfileHandler = () => {
    const history = useHistory()
    const {user, setUser, setFormLoader, setUserData, setUserProfile} = useContextData()
    const token = getCookie('myBlogToken')
-   // https://my-blog-article.herokuapp.com
-   const url = 'http://localhost:3005/user/profile'
+   // https://my-blog-articl.herokuapp.com
+   const url = 'https://my-blog-articl.herokuapp.com/user/profile'
 
    const resultHandler = (result) => {
       if (result.data.success || result.data.error) {

@@ -1,9 +1,22 @@
-.accountActive{
-   text-align: center;
-   margin-top: 100px !important;
-   padding: 30px;
-   .activeBtn{
-      @include btnCommonStyle;
-      margin-top: 30px;
+.accountActivationPage{
+   min-height: 500px;
+   padding-top: 15px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.accountActiveDiv{
+   position: relative;
+   .formLoader{
+      @include formLoaderStyle;
+   }
+   .accountActive{
+      max-width: 450px;
+      text-align: center;
+      padding: 30px;
+      .activeBtn{
+         @include btnCommonStyle;
+         margin-top: 30px;
+      }
    }
 }

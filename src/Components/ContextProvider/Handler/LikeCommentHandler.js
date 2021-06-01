@@ -14,7 +14,7 @@ const LikeCommentHandler = () => {
       setAllComments
    } = useContextData()
    const token = getCookie('myBlogToken')
-   const url = 'http://localhost:3005'
+   const url = 'https://my-blog-articl.herokuapp.com'
 
    const resultUpdater = (oldDataArray, newData) => {
       const result = oldDataArray.map(data => {

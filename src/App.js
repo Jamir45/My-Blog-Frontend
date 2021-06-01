@@ -26,12 +26,12 @@ import Footer from './Components/Footer/Footer';
 import PopularAuthorPage from './Components/Home/Sidebar/PopularAuthorPage';
 
 function App() {
-  const [header, setHeader] = useState(true)
+  const [headerFooter, setHeaderFooter] = useState(true)
 
   return (
     <ContextDataProvider>
       <Router>
-        {header && <Header />}
+        {headerFooter && <Header />}
         <Switch>
           <Route exact path="/">
             <Home />
@@ -40,7 +40,7 @@ function App() {
             <Home />
           </Route>
           <Route path="/login">
-            <Signin setHeader={setHeader} />
+            <Signin setHeaderFooter={setHeaderFooter} />
           </Route>
           <Route path="/signup">
             <Signup />
@@ -76,10 +76,12 @@ function App() {
             <ArticleDetails />
           </Route>
           <Route path="/account/activate/:userToken">
-            <ActivateAccount setHeader={setHeader} />
+            <ActivateAccount setHeaderFooter={setHeaderFooter} />
           </Route>
         </Switch>
-        <Footer />
+        {
+          headerFooter && <Footer />
+        }
       </Router>
     </ContextDataProvider>
   );
