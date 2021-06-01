@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useContextData } from '../ContextProvider/ContextProvider';
 import Article from '../Home/Article/Article';
 import Author from './Author';
+import ComponentLoading from '../Loading/Loading';
 
 const ArticleDetails = () => {
    const {articleId} = useParams()
@@ -40,14 +41,16 @@ const ArticleDetails = () => {
             <div className="col-md-0 col-lg-1"></div>
             <div className="col-md-8 col-lg-7 articleBox">
                {
-                  article && <Article articles={article} />
+                  article ? <Article articles={article} /> : 
+                  <ComponentLoading />
                }
             </div>
             <div className="col-md-4 col-lg-4">
                <Paper className="articleAuthor authorBox" elevation={1}>
                   {
-                     authorProfile && 
-                     <Author article={article} authorProfile={authorProfile}/>
+                     authorProfile ? 
+                     <Author article={article} authorProfile={authorProfile}/> :
+                     <ComponentLoading />
                   }
                </Paper>
             </div>

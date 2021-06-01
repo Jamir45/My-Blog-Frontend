@@ -6,6 +6,7 @@ import ComponentLoading from '../Loading/Loading';
 import { useParams } from 'react-router-dom';
 
 const ArticleAuthorProfile = () => {
+   const {authorId} = useParams()
    const {
       allUsers,
       allArticles,
@@ -19,15 +20,13 @@ const ArticleAuthorProfile = () => {
       setAuthorArticles(true)
    }, [])
 
-
-   const {authorId} = useParams()
    const [author, setAuthor] = useState(null)
    useEffect(() => {
       if (allUsers && authorId) {
          const data = allUsers.find(article => article._id === authorId)
          setAuthor(data)
       }
-   }, [authorId && allUsers])
+   }, [allUsers])
 
    const [authorProfile, setAuthorProfile] = useState(null)
    useEffect(() => {
@@ -35,7 +34,7 @@ const ArticleAuthorProfile = () => {
          const profile = allUsersProfile.find(profile => profile.user === author._id)
          setAuthorProfile(profile)
       }
-   }, [author])
+   }, [allUsersProfile])
 
    return (
       <div className="container">

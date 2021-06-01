@@ -1,12 +1,20 @@
 .articleDetails{
    padding-top: 15px;
-   padding-bottom: 40px;
+   padding-bottom: 15px;
    @include articleBoxCommonStyle;
    .articleBox {
+      .pageLoader{
+         @include loaderStyle;
+         height: 80vh;
+      }
       padding: 0px;
       border: none;
    }
    .articleAuthor{
+      .pageLoader{
+         @include loaderStyle;
+         height: 80vh;
+      }
       .headerBg{
          height: 35px;
          background-color: #6c78f1;

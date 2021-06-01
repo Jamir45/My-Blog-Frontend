@@ -16,7 +16,7 @@ const HoverMenu = ({signout, user}) => {
       <Paper className='profileDashboard' elevation={3}>
          <p id="hoverUserName"><Link to='/user/profile'>{user && user.username}</Link></p>
          <ul id='hoverUl'>
-            <li> <Link to='/dashboard'><DashboardIcon /> Dashboard</Link> </li>
+            <li> <Link to='/user/dashboard'><DashboardIcon /> Dashboard</Link> </li>
             <li> <Link to='/create/article'><CreateIcon /> Create Article</Link> </li>
             <li> 
                <Link to='/bookmarks'>

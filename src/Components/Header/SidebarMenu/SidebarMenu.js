@@ -53,7 +53,7 @@ const SidebarMenu = ({signout, user}) => {
                </ListItem>
                <ListItem button>
                   <DashboardIcon/> 
-                  <Link to="/dashboard" className="ml-3" >
+                  <Link to="/user/dashboard" className="ml-3" >
                      Dashboard
                   </Link> 
                </ListItem>

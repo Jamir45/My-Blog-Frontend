@@ -71,7 +71,6 @@ const Signin = ({setHeaderFooter}) => {
                   }
                </div>
             </div>
-            <div className="py-5"></div>
             <div className='col-md-3'></div>
          </div>
       </div>

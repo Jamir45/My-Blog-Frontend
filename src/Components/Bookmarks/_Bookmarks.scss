@@ -1,6 +1,18 @@
 .BookmarkPage{
-   min-height: 410px;
+   min-height: 420px;
    padding-top: 15px;
+   .bookmarks{
+      .pageLoader{
+         @include loaderStyle;
+         height: 50vh;
+      }
+   }
+   .notBookmark{
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
 }
 .bookmarkSection {
     padding: 15px;

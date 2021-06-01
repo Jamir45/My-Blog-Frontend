@@ -9,6 +9,7 @@ const ArticleHandler = () => {
    const {
       allUsers,
       setAllUsers,
+      setUserData,
       setFormLoader, 
       homeArticles, 
       setHomeArticles,
@@ -135,7 +136,7 @@ const ArticleHandler = () => {
             handleClose()
             setFormLoader(false)
             if (result.data.success) {
-               const {deletedArticle, updatedUser, success} = result.data
+               const {deletedArticle, updatedUser, updatedAllUser, success} = result.data
                toast.success(success)
                const articleDeleted = allArticles.filter(post => {
                   return post._id !== deletedArticle._id
@@ -145,9 +146,8 @@ const ArticleHandler = () => {
                   return post._id !== deletedArticle._id
                })
                setHomeArticles(articleDeletedHome)
-
-               const updatedUserData = resultUpdater(allUsers, updatedUser)
-               setAllUsers(updatedUserData)
+               setUserData(updatedUser)
+               setAllUsers(updatedAllUser)
             } else {
                toast.error(result.data.error)
             }

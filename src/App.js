@@ -24,6 +24,7 @@ import ArticleAuthorProfile from './Components/Profile/ArticleAuthorProfile'
 import EditProfile from './Components/EditProfile/EditProfile';
 import Footer from './Components/Footer/Footer';
 import PopularAuthorPage from './Components/Home/Sidebar/PopularAuthorPage';
+import DashboardPage from './Components/DashboardPage/DashboardPage';
 
 function App() {
   const [headerFooter, setHeaderFooter] = useState(true)
@@ -38,6 +39,9 @@ function App() {
           </Route>
           <Route path="/home/:filter/page=:pageNo">
             <Home />
+          </Route>
+          <Route path="/user/dashboard">
+            <DashboardPage />
           </Route>
           <Route path="/login">
             <Signin setHeaderFooter={setHeaderFooter} />
