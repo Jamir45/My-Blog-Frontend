@@ -5,6 +5,8 @@ import { useContextData } from '../ContextProvider/ContextProvider';
 import Article from '../Home/Article/Article';
 import Author from './Author';
 import ComponentLoading from '../Loading/Loading';
+import * as cheerio from 'cheerio';
+
 
 const ArticleDetails = () => {
    const {articleId} = useParams()
@@ -23,7 +25,6 @@ const ArticleDetails = () => {
    }, [articleId && allArticles])
 
    const [authorProfile, setAuthorProfile] = useState(null)
-   console.log(authorProfile)
    useEffect(() => {
       if (allUsersProfile && article) {
          const profile = allUsersProfile.find(profile => profile.user === article.author._id)

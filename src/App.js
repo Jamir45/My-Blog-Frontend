@@ -25,6 +25,7 @@ import EditProfile from './Components/EditProfile/EditProfile';
 import Footer from './Components/Footer/Footer';
 import PopularAuthorPage from './Components/Home/Sidebar/PopularAuthorPage';
 import DashboardPage from './Components/DashboardPage/DashboardPage';
+import PasswordReset from './Components/PasswordReset/PasswordReset';
 
 function App() {
   const [headerFooter, setHeaderFooter] = useState(true)
@@ -78,6 +79,12 @@ function App() {
           </Route>
           <Route path="/article/details/:articleId">
             <ArticleDetails />
+          </Route>
+          <Route path="/password/reset">
+            <PasswordReset />
+          </Route>
+          <Route path="/set/new/password/:resetToken">
+            <PasswordReset />
           </Route>
           <Route path="/account/activate/:userToken">
             <ActivateAccount setHeaderFooter={setHeaderFooter} />

@@ -26,15 +26,15 @@ const ArticleAuthorProfile = () => {
          const data = allUsers.find(article => article._id === authorId)
          setAuthor(data)
       }
-   }, [allUsers])
-
+   }, [authorId && allUsers])
+   
    const [authorProfile, setAuthorProfile] = useState(null)
    useEffect(() => {
       if (allUsersProfile && author) {
          const profile = allUsersProfile.find(profile => profile.user === author._id)
          setAuthorProfile(profile)
       }
-   }, [allUsersProfile])
+   }, [author])
 
    return (
       <div className="container">

@@ -76,11 +76,9 @@ const UserHandler = () => {
 
    const followUnFollow = async (userId) => {
       if (token) {
-         console.log('Token is = '+token)
          const result = await axios.put(url+'/followUnFollow/'+userId, {}, {
             headers: {authorization: token}
          })
-         console.log(result.data)
          if (!result.data.error) {
             const {followerUser, followingUser} = result.data
             setUserData(followerUser)
@@ -93,10 +91,36 @@ const UserHandler = () => {
       }
    }
 
+   const resetPassword = async (email) => {
+      const result = await axios.post(url+'/reset/password', {email})
+      setFormLoader(false)
+      if (result.data.success) {
+         toast.success(result.data.success)
+      } else {
+         toast.error(result.data.error)
+      }
+   }
+
+   const setNewPassword = async (resetToken, password) => {
+      const result = await axios.put(url+'/set/password', {
+         token: resetToken, 
+         password: password.confirmPassword
+      })
+      setFormLoader(false)
+      if (result.data.success) {
+         toast.success(result.data.success)
+         history.push('/login')
+      } else {
+         toast.error(result.data.error)
+      }
+   }
+
    return {
       userSignin,
       userSignup,
-      followUnFollow
+      resetPassword,
+      setNewPassword,
+      followUnFollow,
    }
 };
 
